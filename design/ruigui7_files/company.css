@@ -1,0 +1,54 @@
+/*显示当先位置*/
+.column{ line-height:30px; border-top:1px solid #000; border-bottom:1px solid #000; font-size:14px; font-family:"微软雅黑";}
+.content_border{ border:1px solid #000; background:#FFF;}
+/*子页左边架构*/
+.company_content{}
+.company_left{ width:241px; float:left;}
+.company_left dd{float:right;}
+.company_left dd a{ display:block; width:226px; height:55px; background:#383838; text-align:center; line-height:55px; margin-top:5px; color:#FFF; font-size:20px; font-family:"微软雅黑"; text-decoration:none;}
+.company_left dd a:hover{ background:#000;}
+/*子页右边架构*/
+.company_rigt{ width:730px; float:right; border:1px solid #CCC; padding:10px; overflow:auto; background:#FFF;}
+.seat{ border-bottom:2px solid #000; font-size:18px; font-family:"微软雅黑";}
+.company_rigt p{ margin-top:10px; font-size:15px; font-family:"微软雅黑"; text-indent:2em; line-height:40px;}
+
+/*新闻内页*/
+
+.company_rigt dl { width:730px; margin-top:20px; }
+.company_rigt dl dd{line-height:25px;}
+.company_rigt dl dd span{ float:right; margin-right:20px;}
+.company_rigt dl dd a{ text-decoration:none; font-size:13px; font-family:"微软雅黑";} 
+.company_rigt dl dd a:hover{ color:#F00; text-decoration:none;}
+.rad{ color:#F00;}
+
+/*联系我们内页*/
+.cont_main_tab{border-collapse:collapse; width:730px; margin-top:10px; line-height:30px;}
+.cont_main_tab td,.cont_main_tab th{border:1px solid #CCC; text-align:left; padding:3px 10px; vertical-align:middle;}
+.down_list{display:none;}
+.down_box{padding:10px 20px;}
+.down_box li span{float:right; display:block;.down_box li{background-image:url(../img/point_2.gif); background-repeat:no-repeat; background-position:left 12px; text-indent:10px; line-height:25px; height:25px; _padding-left:10px;}
+.net_table{
+	width:760px;
+	border-collapse:collapse;
+	margin:10px auto;
+}
+.net_table td,.net_table th{
+	border:1px solid #ccc;
+}
+.net_th{
+	height:30px;
+	line-height:30px;
+	background-color:#aa0000;
+	font-size:15px;
+}
+.net_th th{
+	height:30px;
+	color:#FFF;
+}
+.net_td{
+	color:#555;
+}
+.net_td td{
+	line-height:25px;
+	padding-left:10px;
+}
