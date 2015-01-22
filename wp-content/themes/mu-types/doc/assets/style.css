@@ -1,0 +1,248 @@
+/*
+	Eric Meyer's CSS Reset v2.0 
+	http://meyerweb.com/eric/tools/css/reset/ 
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section { display: block; }
+
+
+
+/* 
+   Fix the clear issue
+*/
+.hide { display: none; }
+
+.clear { clear: both; display: block; font-size: 0; height: 0; line-height: 0; width:100%;}
+
+.clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; } 
+.clearfix { display: inline-block; } /* Hide from IE Mac \*/ 
+.clearfix { display: block; } /* End hide from IE Mac */ 
+
+.clear-fixed { height: 100%; overflow: hidden; }
+
+
+
+/*
+   Links & Image
+*/
+a, a:focus { text-decoration: none; }
+a:hover, a:active, a:focus { outline: none; }
+a img { border: none; }
+img { vertical-align: top; }
+
+
+
+
+/*
+   Typography
+*/
+::-moz-selection { background: #F78118; color: #FFFFFF; text-shadow: none; }
+::selection { background: #F78118; color: #FFFFFF; text-shadow: none; }
+
+body { line-height: 1; }
+
+abbr[title] { border-bottom: 1px dotted; }
+
+b, strong { font-weight: bold; }
+
+em,
+i,
+dfn { font-style: italic; }
+
+hr { display: block; height: 1px; border: 0; border-top: 1px solid #CCCCCC; margin: 1em 0; padding: 0; }
+
+ins { background: #FFFF99; color: #000000; text-decoration: none; }
+
+mark { background: #FFFF00; color: #000000; font-style: italic; font-weight: bold; }
+
+pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; }
+
+blockquote, q { quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after { content: ''; content: none; }
+
+small { font-size: 85%; }
+
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+
+
+/* 
+	Code formatting
+*/
+pre code {
+  display: block;
+  color: #000;
+  padding: 10px 20px;
+  font-size: 14px;
+  background: #F3F3F3;
+  font-family: "Consolas", "Menlo", "DejaVu Sans Mono", monospace;
+}
+pre .subst,
+pre .title {
+  font-weight: normal;
+  color: #000;
+}
+pre .comment {
+  color: #535353;
+  font-style: italic;
+}
+pre .doctype {
+  color: #535353;
+}
+pre .tag {
+  background: #F3F3F3;
+}
+pre .tag .title,
+pre .id,
+pre .attr_selector,
+pre .pseudo,
+pre .literal,
+pre .keyword,
+pre .hexcolor,
+pre .css .function,
+pre .ini .title,
+pre .css .class,
+pre .list .title,
+pre .tex .command {
+  font-weight: normal;
+  color: #FF0C64;
+}
+pre .attribute,
+pre .rules .keyword,
+pre .number,
+pre .date {
+  font-weight: normal;
+  color: #008CFF;
+}
+pre .number {
+  font-weight: normal;
+}
+pre .string,
+pre .value,
+pre .filter .argument,
+pre .css .function .params {
+  color: #008900;
+  font-weight: normal;
+}
+
+
+
+/*
+ Common
+*/
+body { 
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	line-height: 1.6em; 
+	color: #666;
+	background-color: #F1F1F1;
+}
+
+a { color: #0099FF; }
+a:hover { text-decoration: underline; }
+
+nav, h1, h2, h3 { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+
+p, ul, ol, dl, pre, blockquote, code { margin: 5px 0 15px; }
+
+h1, h2, h3, h4 { font-weight: 100; color: #333333; }
+h1, h2, h3, h4 { margin-bottom: 15px; }
+h1 { font-size: 32px; line-height: 36px; }
+h2 { font-size: 28px; line-height: 32px;}
+h3 { font-size: 22px; line-height: 26px;}
+h4 { font-size: 18px; line-height: 20px; margin-top: 40px;}
+
+nav li { list-style: none; }
+
+
+#wrap { 
+	width: 790px; 
+	margin: 50px 0 50px 300px;
+	padding: 30px 30px 20px;
+	background: #FFF;
+	border: 1px solid #E5E5E5;
+}
+
+
+
+/*
+ Table Of Content
+*/
+#table-content {
+	position: fixed;
+	top: 50px;
+	left: 20px;
+	width: 180px;
+	background: #FFF;
+	border: 1px solid #E5E5E5; 
+	padding: 20px 30px 0;
+}
+
+#table-content ul {
+	padding-left: 5px;
+}
+
+#table-content li {
+	padding: 5px 0;
+	height: 100%;
+	overflow: hidden;
+}
+
+#table-content li b {
+	padding-right: 10px;
+	text-align:center;
+}
+
+
+/*
+Content
+*/
+.title { font-size: 11px; }
+.br { margin-top: 60px; }
+.notice b { background: #F78118; color: #FFF; font-size: 14px; font-weight: 100; }
+.black { background: #222; color: #FFF; }
+img { border: 1px solid #E5E5E5; padding: 4px;}
+
+article h1 b, article h3 b {
+	float: left;
+	font-weight: 100;
+}
+
+article h3 { 
+	border-bottom: 2px solid #363636;  
+	margin-bottom: 20px; 
+	text-align: right;
+}
+
+article h3 a { 
+	font-size: 10px;
+}
+
+article ul, article ol {  list-style-position: inside; }
+article li { padding: 3px 0; }

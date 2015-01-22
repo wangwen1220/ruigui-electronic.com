@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0074)http://s3.amazonaws.com/nettuts/658_freeTemplate/Final%20File/contact.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Aurelius | Contact Us</title>
+	
+	
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="http://s3.amazonaws.com/nettuts/658_freeTemplate/Final%20File/css/reset.css">
+	<link rel="stylesheet" href="http://s3.amazonaws.com/nettuts/658_freeTemplate/Final%20File/css/styles.css">
+	
+	<!-- Scripts -->
+	<script type="text/javascript" src="./contact_files/jquery.min.js"></script>
+	<script type="text/javascript" src="./contact_files/contact.js"></script>
+	<!--[if IE 6]>
+	<script src="js/DD_belatedPNG_0.0.8a-min.js"></script>
+	<script>
+	  /* EXAMPLE */
+	  DD_belatedPNG.fix('.button');
+	  
+	  /* string argument can be any CSS selector */
+	  /* .png_bg example is unnecessary */
+	  /* change it to what suits you! */
+	</script>
+	<![endif]-->
+<script type="text/javascript">function a() {	 document.addEventListener('keydown', function(e){		/*console.log('keydown');*/		var keys = [];		if(e.ctrlKey || e.shiftKey || e.altKey || e.metaKey) {			if(e.metaKey) {				keys.push('Cmd');			}			if(e.shiftKey) {				keys.push('Shift');			}			if(e.ctrlKey)			{				keys.push('Ctrl');			}			if(e.altKey) {				keys.push('Alt');			}		}		if(e.which)		{			/*console.log(e.which);*/			keys.push(String.fromCharCode(e.which));		}		/*console.log(keys.join('+'));*/		if(keys.length >= 2 && keys[keys.length-1] != '') {			window.postMessage({type: 'dolphin_shortcuts', keys:keys}, '*');		}	 });}a();</script><script type="text/javascript"> window.oncontextmenu = function(event) {    var target = event.target.getAttribute('obj_url');	 window.postMessage({type: 'dolphin_clickTarget', target:target}, '*'); };</script></head>
+
+<body>
+
+	<div id="wrapper" class="container_12 clearfix">
+
+		<!-- Text Logo -->
+		<h1 id="logo" class="grid_4">Aurelius</h1>
+		
+		<!-- Navigation Menu -->
+		<ul id="navigation" class="grid_8">
+			<li><a href="./contact_files/contact.htm" class="current"><span class="meta">Get in touch</span><br>Contact Us</a></li>
+			<li><a href="http://s3.amazonaws.com/nettuts/658_freeTemplate/Final%20File/blog.html"><span class="meta">Latest news</span><br>Blog</a></li>
+			<li><a href="http://s3.amazonaws.com/nettuts/658_freeTemplate/Final%20File/portfolio.html"><span class="meta">Our latest work</span><br>Portfolio</a></li>
+			<li><a href="http://s3.amazonaws.com/nettuts/658_freeTemplate/Final%20File/about.html"><span class="meta">Who are we?</span><br>About</a></li>
+			<li><a href="http://s3.amazonaws.com/nettuts/658_freeTemplate/Final%20File/index.html"><span class="meta">Homepage</span><br>Home</a></li>
+		</ul>
+			
+		<div class="hr grid_12 clearfix">&nbsp;</div>
+			
+		<!-- Caption Line -->
+		<h2 class="grid_12 caption clearfix">Enjoyed looking at our work? Don't hesitate to <span>contact us</span>!</h2>
+		
+		<div class="hr grid_12 clearfix">&nbsp;</div>
+
+		<!-- Column 1 / Content -->
+		<div class="grid_8">
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vel porta erat. Quisque sit amet risus at odio pellentesque sollicitudin. Proin suscipit molestie facilisis. Aenean vel massa magna. Proin nec lacinia augue. Mauris venenatis libero nec odio viverra consequat. In hac habitasse platea dictumst.</p>
+			<!-- Contact Form -->
+			<form action="http://s3.amazonaws.com/nettuts/658_freeTemplate/Final%20File/index.html" method="post" id="contact_form">
+					<h3>Contact Form</h3>
+				<div class="hr dotted clearfix">&nbsp;</div>
+				<ul>						
+					<li class="clearfix"> 
+						<label for="name">Name</label>
+						<input type="text" name="name" id="name">
+						<div class="clear"></div>
+						<p id="name_error" class="error">Insert a Name</p>
+					</li> 
+					<li class="clearfix"> 
+						<label for="email">Email Address</label>
+						<input type="text" name="email" id="email">
+						<div class="clear"></div>
+						<p id="email_error" class="error">Enter a valid email address</p>
+					</li> 
+					<li class="clearfix"> 
+						<label for="subject">Subject</label>
+						<input type="text" name="subject" id="subject">
+						<div class="clear"></div>
+						<p id="subject_error" class="error">Enter a message subject</p>
+					</li> 
+					<li class="clearfix"> 
+						<label for="message">Message</label>
+						<textarea name="message" id="message" rows="30" cols="30"></textarea>
+						<div class="clear"></div>
+						<p id="message_error" class="error">Enter a message</p>
+					</li> 
+					<li class="clearfix"> 
+						
+					<p id="mail_success" class="success">Thank you. I'll get back to you as soon as possible.</p>
+					<p id="mail_fail" class="error">Sorry, an error has occured. Please try again later.</p>
+					<div id="button">
+					<input type="submit" id="send_message" class="button" value="Submit">
+					</div>
+					</li> 
+				</ul> 
+			</form>  
+		</div>
+		
+		<!-- Column 2 / Sidebar -->
+		<div class="grid_4 contact">
+		
+			<!-- Adress and Phone Details -->
+			<h4>Address and Phone</h4> 
+			<div class="hr dotted clearfix">&nbsp;</div>
+			<ul> 
+				<li> 
+					<strong>Your Company Name</strong><br> 
+					1458 Sample Road, Redvalley<br> 
+					City (State) H4Q 1J7<br> 
+					Country<br><br> 
+				</li> 
+				<li>USA - (888) 888-8888</li> 
+				<li>Worldwide - (888) 888-8888</li> 
+			</ul> 
+			
+			<!-- Email Addresses -->
+			<h4>Emails</h4> 
+			<div class="hr dotted clearfix">&nbsp;</div>
+			<ul> 
+				<li>General - <a href="mailto:info@yourcompany.com">info@yourcompany.com</a></li> 
+				<li>Sales - <a href="mailto:sales@yourcompany.com">sales@yourcompany.com</a></li> 
+			</ul> 
+			
+			<!-- Social Profile Links -->
+			<h4>Social Profiles</h4> 
+			<div class="hr dotted clearfix">&nbsp;</div>
+			<ul> 
+				<li class="float"><a href="http://s3.amazonaws.com/nettuts/658_freeTemplate/Final%20File/contact.html#"><img alt="" src="./contact_files/twitter.png" title="Twitter"></a></li> 
+				<li class="float"><a href="http://s3.amazonaws.com/nettuts/658_freeTemplate/Final%20File/contact.html#"><img alt="" src="./contact_files/facebook.png" title="Facebook"></a></li> 
+				<li class="float"><a href="http://s3.amazonaws.com/nettuts/658_freeTemplate/Final%20File/contact.html#"><img alt="" src="./contact_files/stumbleupon.png" title="StumbleUpon"></a></li> 
+				<li class="float"><a href="http://s3.amazonaws.com/nettuts/658_freeTemplate/Final%20File/contact.html#"><img alt="" src="./contact_files/flickr.png" title="Flickr"></a></li> 
+				<li class="float"><a href="http://s3.amazonaws.com/nettuts/658_freeTemplate/Final%20File/contact.html#"><img alt="" src="./contact_files/delicious.png" title="Delicious"></a></li> 
+			</ul> 
+			
+		</div>
+		
+		<div class="hr grid_12 clearfix">&nbsp;</div>
+		
+		<!-- Footer -->
+		<p class="grid_12 footer clearfix">
+			<span class="float"><b>© Copyright</b> <a href="">QwibbleDesigns</a> - remove upon purchase.</span>
+			<a class="float right" href="http://s3.amazonaws.com/nettuts/658_freeTemplate/Final%20File/contact.html#">top</a>
+		</p>
+		
+	</div><!--end wrapper-->
+
+
+</body></html>

@@ -1,0 +1,9 @@
+hr.sepline {display: block;background: none;height: 0;border: 0;border-top:1px solid #DDD;border-bottom:1px solid #FFF;}
+.wpd-panel .form-table th {font-weight:bold;width:100px;}
+p.help, p.description, span.description, .form-wrap p{font-style:normal;}
+.wpd-color-handle{margin:0 0px 0 0;float:none;}
+.wpd-color-input{width:70px;text-transform:uppercase;}
+.wpd-upload-text{width:70%;}
+.wpd-upload-preview{overflow:hidden;margin:0 0 10px;}
+.wpd-upload-preview img{max-width:100%;max-height:200px;}
+.wp-editor-container{background:#FFF;}

@@ -1,0 +1,305 @@
+/* =========================================
+   Widget Common
+   ======================================== */
+.widget { 
+	margin-bottom: 40px; 
+}
+
+.widgets-area .widget:last-child { 
+	margin-bottom: 0; 
+}
+
+.widget h3 { 
+	font-size: 14px; 
+	font-weight: bold;
+}
+
+.widgets-area .widget h3 { 
+	margin-bottom: 10px;
+	padding-bottom: 15px;
+	background: url(../images/double-dotted.png) repeat-x 0 100%;
+}
+
+.footer-widgets-area .widget h3 { 
+	margin-bottom: 5px;
+}
+
+.widget_categories ul,
+.widget_pages ul,
+.widget_nav_menu ul,
+.widget_archive ul,
+.widget_links ul,
+.widget_meta ul {
+	padding: 2px 0 ;
+} 
+
+.widget_categories ul li ul,
+.widget_pages ul li ul,
+.widget_nav_menu ul li ul {
+	padding: 0;
+	margin: 0;
+}
+
+.widget_pages li a,
+.widget_nav_menu li a {
+	display: block;
+}
+
+.widget_categories li,
+.widget_pages li a,
+.widget_nav_menu li a,
+.widget_archive li,
+.widget_links li,
+.widget_meta li {
+	padding: 5px 0;
+}
+
+.widget_categories li a,
+.widget_pages li a,
+.widget_nav_menu li a,
+.widget_archive li a,
+.widget_links li a,
+.widget_meta li a {
+	font-weight: bold;
+}
+
+.widget_text .textwidget {
+	margin-top: 18px;
+}
+
+.widget_categories li {
+	color: #666;
+}
+
+.widget_categories li a {
+	padding-right: 10px;
+}
+
+.widget-comments section h5 {
+	line-height: 1.3em;
+	margin-bottom: 5px;
+}
+
+.widget-comments section {
+	margin-left: 70px;
+}
+
+.widget-comments .no-avatar {
+	margin-left: 0;
+}
+
+
+/* =========================================
+   Flickr
+   ======================================== */
+.widget-flickr h3 span {
+	font-size: 10px; 
+	font-weight: 100;
+	padding-left: 20px;
+}
+
+.widgets-area #flickr_badge_wrapper { 
+	width: 275px; 
+	margin-top: 20px;
+	margin-left: -5px; 
+}
+
+.widgets-area .flickr_badge_image { 
+	float: left; 
+	margin: 5px 0 0 5px; 
+}
+
+.widgets-area .flickr_badge_image img { 
+	width: 50px; 
+	height: 50px; 
+}
+
+.footer-widgets-area .widget-flickr h3 {
+	margin-bottom: 0;
+}
+
+.footer-widgets-area #flickr_badge_wrapper { 
+	width: 325px; 
+	margin-top: 15px;
+	margin-left: -10px; 
+}
+
+.footer-widgets-area .flickr_badge_image { 
+	float: left; 
+	margin: 10px 0 0 10px; 
+}
+
+.footer-widgets-area .flickr_badge_image img { 
+	width: 54px; 
+	height: 54px; 
+}
+
+
+
+/* =========================================
+   Post
+   ======================================== */
+.widgets-area .widget-posts h3 {
+	margin-bottom: 5px;
+}
+
+.widget-posts li { 
+	padding-top: 20px;
+}
+
+.widget-posts li .post-meta {
+	line-height: 1.6em;
+}
+
+.widget-posts li .post-meta, 
+.widget-posts li .post-meta a {
+	font-size: 10px;
+}
+
+.widget-posts li .post-meta span {
+	padding: 0 5px;
+}
+
+
+
+/* =========================================
+   Search
+   ======================================== */
+.widgets-area .widget-search h3,
+.footer-widgets-area .widget-search h3 {
+	margin-bottom: 25px;
+}
+
+.widget-search .searchbox dt {
+	width: 235px;
+}
+
+
+/* =========================================
+   Tags
+   ======================================== */
+.widget_tag_cloud .tagcloud{
+	padding-top: 10px;
+	height: 100%;
+	overflow: hidden;
+}
+
+.widget_tag_cloud a {
+	float: left;
+	display: block;
+	padding: 0 10px;
+	margin: 0 10px 10px 0;
+	background: #212121;
+	color: #FFF;
+}
+
+.widget_tag_cloud a:hover {
+	background: #FF4E00;
+}
+
+
+/* =========================================
+   Ads
+   ======================================== */
+.widgets-area .widget-ads h3 { 
+	margin-bottom: 5px;
+}
+
+.widget-ads li { 
+	float: left; 
+	width: 125px; 
+	height: 125px; 
+	margin: 20px 20px 0 0; 
+}
+
+.widget-ads li.last { 
+	margin-right: 0; 
+}
+
+
+/* =========================================
+   Tweets
+   ======================================== */
+.widget-tweets li { 
+	padding-top: 15px;
+}
+
+.widget-tweets li figure {
+	padding-top: 5px;
+}
+
+.widget-tweets li section {
+	margin-left: 75px;
+	line-height: 1.6em;
+}
+
+.widget-tweets li.no-avatar section {
+	margin-left: 0;
+}
+
+.widget-tweets li .tweet-time {
+	margin-top: 5px;
+}
+
+
+/* =========================================
+   Social Media
+   ======================================== */
+.widget-social-media a {
+	display: block;
+	float: left;
+	width: 22px;
+	height: 22px;
+	margin: 0 6px 5px 0;
+	background-image: url(../images/media-icons.png);
+	background-repeat: no-repeat;
+	text-indent: -999em;
+}
+
+.social-media-box {
+	padding-top: 15px;
+}
+
+.widget-social-media .rss {
+	background-position: 0 0;
+}
+
+.widget-social-media .twitter {
+	background-position: -22px 0;
+}
+
+.widget-social-media .youtube {
+	background-position: -44px 0;
+}
+
+.widget-social-media .linkedin {
+	background-position: -66px 0;
+}
+
+.widget-social-media .facebook {
+	background-position: -88px 0;
+}
+
+.widget-social-media .digg {
+	background-position: -110px 0;
+}
+
+.widget-social-media .flickr {
+	background-position: -132px 0;
+}
+
+.widget-social-media .delicious {
+	background-position: -154px 0;
+}
+
+.widget-social-media .stumble {
+	background-position: -176px 0;
+}
+
+.widget-social-media .myspace {
+	background-position: -198px 0;
+}
+
+.widget-social-media .google {
+	background-position: -220px 0;
+}
