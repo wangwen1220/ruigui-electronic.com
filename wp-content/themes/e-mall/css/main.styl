@@ -1,0 +1,1582 @@
+/*! Main Style by Steven 2014-8-1 */
+
+support-for-ie = false
+
+@import 'nib'
+@import 'wcss'
+
+/* Var
+============================================================================= */
+fonts = 'Microsoft Yahei', 'Helvetica Neue', Helvetica, Arial, sans-serif
+dred = #c00
+dblue = #16447E
+lgray = #eee
+dgray = #ebebeb
+dorange = #FC8C01
+lorange = #FF9933
+
+// 有点复杂暂时不用
+// button(height = 30px, color1 = #FE9F03, color2 = #FC8B01, radius = height / 2)
+//   display inline-block
+//   height height
+//   line-height height
+//   border-radius 15px
+//   text-align center
+//   color #fff
+//   font-size 1.6rem
+//   font-weight bold
+//   background linear-gradient(top, #FE9F03, #FC8B01)
+
+//   &:before
+//     content ''
+//     display inline-block
+//     width 17px
+//     height 100%
+//     margin-right 1rem
+//     background url(../img/icon-email.png) 0 50% no-repeat
+//     background-size contain
+//     vertical-align top
+
+/* Reset
+============================================================================= */
+*
+*:before
+*:after
+  box-sizing border-box
+
+html
+  font-size 10px
+  -webkit-tap-highlight-color rgba(0, 0, 0, .1)
+  background dgray
+
+body
+  font-family fonts
+  font-size 1.2rem
+  line-height 1.428571429
+  color #333
+  // min-width 320px
+  // max-width 640px
+  // user-select none
+  background-color #fff
+  // user-select none
+  // -ms-touch-action none
+
+// a
+// img
+//   -webkit-touch-callout none
+
+a
+  color inherit
+  text-decoration none
+
+a:hover
+  color inherit
+  // text-decoration underline
+
+a:focus
+  outline thin dotted
+  outline 5px auto -webkit-focus-ring-color
+  outline-offset -2px
+
+mark
+  color #333
+  background #ffa
+
+// A hack for HTML5 contenteditable attribute on mobile
+textarea[contenteditable]
+  appearance none
+
+/* Helper
+========================================================================== */
+// Helper from HTML5 Boilerplate
+.nocallout
+  -webkit-touch-callout none
+
+.pressed
+  background-color rgba(0, 0, 0, .7)
+
+.gifhidden
+  position absolute
+  left -100%
+
+.invisible
+  visibility hidden
+
+// 排版
+.img-responsive
+  display block
+  height auto
+  max-width 100%
+
+.img-rounded
+  border-radius 6px
+
+.img-thumbnail
+  display inline-block
+  height auto
+  max-width 100%
+  padding 4px
+  line-height 1.42857143
+  background-color #fff
+  border 1px solid #ddd
+  border-radius 4px
+  -webkit-transition all 0.2s ease-in-out
+  transition all 0.2s ease-in-out
+
+.img-circle
+  border-radius 50%
+
+hr
+.hr
+  clear both
+  margin 10px 0
+  border 0
+  border-top 1px solid #eee
+
+.highlight
+  color red !important
+
+.fn-tl
+  text-align left !important
+
+.fn-tc
+  text-align center !important
+
+.fn-tr
+  text-align right !important
+
+.fn-tj
+  text-align justify !important
+
+.fn-nowrap
+  white-space nowrap !important
+
+.fn-brk
+  word-wrap break-word !important
+
+.fn-lowercase
+  fn-transform lowercase !important
+
+.fn-uppercase
+  fn-transform uppercase !important
+
+.fn-capitalize
+  text-transform capitalize !important
+
+.fn-dn
+.js-hide
+  display none !important
+
+.fn-di
+  display inline !important
+
+.fn-db
+  display block !important
+
+.fn-dib
+  display inline-block !important
+
+.fn-vh
+  visibility hidden !important
+
+.fn-fly
+  margin-left auto !important
+  margin-right auto !important
+
+.f0
+  font-size 0 !important
+
+.p0
+  padding 0 !important
+
+.m0
+  margin 0 !important
+
+.mt0
+  margin-top 0 !important
+
+.mb0
+  margin-bottom 0 !important
+
+// 遮罩层
+.fn-mask
+  display none
+  fixed top left bottom right
+  z-index 111
+  background rgba(0, 0, 0, .4)
+
+// js placeholder
+.placeholder
+  color #A6A6A6 !important
+
+// AD
+.ad
+  margin 10px auto
+  overflow hidden
+  text-align center
+  background #f8f8f8
+
+  > a
+    display block
+
+    > img
+      width 100%
+
+/* Plugin
+========================================================================== */
+// js-slider 模块 for swipe.js
+.w-slider
+  position relative
+  overflow hidden
+  visibility hidden
+
+  > .slider-cnt
+    position relative
+    overflow hidden
+
+    > .slider-item
+      position relative
+      float left
+      width 100%
+
+      // &.inview
+      //   z-index 1
+
+// w-scroller 模块
+.w-scroller
+  position relative
+  margin 0 auto
+  width 320px
+  height 200px
+  overflow hidden
+
+  > .list
+    box-sizing content-box
+    position absolute
+    z-index 1 // 操！手机上必须设置此属性才能滑动
+    padding-left 48px
+    // width 880px
+    width 100%
+    height 100%
+    overflow hidden
+    transform translateZ(0)
+    // transition 300ms
+    // touch-callout none
+    // user-select none
+    // background-color #444
+
+    > .item
+      position relative
+      float left
+      padding 0 10px
+      width 220px
+      height 100%
+      overflow hidden
+
+      > img
+        width 100%
+        height 100%
+
+/* TPL
+========================================================================== */
+// w-recommend 模块
+.w-recommend
+  margin 1rem 0
+
+  .w-recommend-hd
+    position relative
+    text-align center
+
+    &:after
+      content ''
+      position absolute
+      left 0
+      right 0
+      top 50%
+      margin-top -1px
+      display block
+      border-top 1px #D5D5D5 solid
+
+    > .title
+      position relative
+      z-index 1
+      display inline-block
+      padding 0 10px
+      color #545454
+      font-size 1.2rem
+      background #fff
+
+      &:before
+        content ''
+        display inline-block
+        margin-right 5px
+        width 13px
+        height 13px
+        background url(../img/icon-arrow-circle.png) 50% 50% no-repeat
+        background-size contain
+        vertical-align middle
+
+// 通用标题模块
+.w-title
+  position relative
+  padding 8px 10px
+  border-bottom 1px #ddd solid
+  font-size 1.6rem
+  font-weight bold
+  color dred
+
+  &:after
+    content ''
+    position absolute
+    left 2em
+    bottom -4px
+    width 8px
+    height 8px
+    border 1px #ddd solid
+    border-width 1px 0 0 1px
+    transform rotate(45deg)
+    background #fff
+
+  & > a
+    color dblue
+    font-size 90%
+
+// 通用横线穿过的标题样式
+.w-title-linethrough
+  margin 1rem 0
+  position relative
+  text-align center
+
+  & > .inner
+    position relative
+    z-index 1
+    display inline-block
+    padding 0 10px
+    color #545454
+    font-size 1.2rem
+    background #fff
+
+  &:after
+    content ''
+    position absolute
+    left 0
+    right 0
+    top 50%
+    margin-top -1px
+    display block
+    border-top 1px #D5D5D5 solid
+
+// w-piclist 模块
+.w-piclist
+  display flex
+  flex-wrap wrap
+  justify-content space-between
+  margin 15px 0
+
+  > .item
+    flex 1 60px
+    max-width 100px
+    padding 0 10px
+    // background #ccc
+
+    > .pic
+      display block
+      min-height 60px
+      border 1px #eee solid
+      text-align center
+      // background #ccc
+      // line-height 60px
+
+      > img
+        width 100%
+        height auto
+        // max-width 100%
+
+      &:after
+        content ''
+        line-height 60px
+        vertical-align middle
+
+    > .name
+      margin-top 5px
+      height 26px
+      line-height 13px
+      overflow hidden
+      color #50739E
+      font-size 1.2rem
+      font-family Arial
+
+// 通用加载中模块
+.w-loading
+  margin-top 15px
+  display block
+  text-align center
+  font-size 1.3em
+
+  > i
+    position relative
+    // display inline-block
+    margin-right 1em
+    // width 2em
+    // height 2em
+    vertical-align top
+
+  // &:before
+  //   content ''
+  //   display inline-block
+  //   width 2em
+  //   height 2em
+  //   background url(../img/loading.gif) no-repeat
+  //   background-size contain
+
+// w-art 通用图文模块
+.w-art
+  padding 10px 0
+  clearfix()
+
+  .pic
+    float left
+    margin-right 10px
+
+  .txt
+    overflow hidden
+
+    h3
+      max-height 48px
+      color blue-dark
+      overflow hidden
+
+      a
+        display block
+
+// 横屏
+@media only screen and (min-width 321px) and (orientation landscape)
+  .w-art-wrap
+    display flex
+    flex-wrap wrap
+    justify-content space-between
+
+    .w-art
+      width 49%
+
+// w-list 通用列表模块
+.w-list-item
+  height 40px
+  line-height 40px
+  overflow hidden
+  word-wrap break-word
+  border-bottom 1px #DEDEDE solid
+
+  a
+    display block
+    color blue-dark
+    overflow ellipsis
+
+  a strong
+    font-weight bold
+    color blue
+
+  a em
+    color blue
+
+// 横屏
+@media only screen and (min-width 321px) and (orientation landscape)
+  .w-list
+    display flex
+    flex-wrap wrap
+    justify-content space-between
+    &.headline
+      display block
+
+  .w-list-item
+    // width 50%
+    flex 1 50%
+
+/* Layout
+========================================================================== */
+// Header
+#header
+  // position fixed
+  // z-index 1
+  // top 0
+  // width 100%
+  position relative
+  height 56px
+  border-bottom 1px #D54646 solid
+  background dred
+
+  .logo
+    display inline-block
+    margin 14px 0 0 10px
+    width 191px
+    height 22px
+    text-indent -9999px
+    background url(../img/logo.png) 0 0 no-repeat
+    background-size contain
+
+  menu
+    position absolute
+    right 10px
+    top 50%
+    margin-top -16px
+    font-size 0
+
+    a
+      display inline-block
+      margin-left 14px
+      width 32px
+      height 32px
+      background-size contain
+      background-repeat no-repeat
+
+    a.search
+      background-image url(../img/icon-search.png)
+
+    a.login
+      background-image url(../img/icon-login.png)
+
+// Search
+#search
+#search-footer
+  // margin-top 56px
+  padding 10px 10px 5px
+  background dgray
+
+  .search-cancel
+    float right
+    margin-left .8rem
+    line-height 34px
+    color dred
+    font-size 1.3rem
+
+  .search-form
+    .panel
+      // display box
+      display flex
+      position relative
+      height 34px
+      border 1px #DBDBDB solid
+      padding 6px 0 6px 34px
+      background #fff url(../img/icon-search-small.png) 7px 50% no-repeat
+      background-size 17px
+
+      input
+        flex 1
+        // width 100%
+        min-width 50%
+        height 20px
+        line-height 20px
+        border 0
+        font-size 1.4rem
+        color #000
+        background transparent
+        // background #ccc
+
+      input:focus
+        outline none
+
+      .clear
+        absolute right 7px top 50%
+        transform translateY(-50%)
+        size 16px
+        border-radius 8px
+        background #9F9F9F
+
+        &:before
+        &:after
+          content ''
+          position absolute
+          left 50%
+          top 50%
+          margin-left -5px
+          width 10px
+          height 1px
+          background #fff
+          transform rotate(45deg)
+
+        &:after
+          transform rotate(135deg)
+
+  .search-hot
+    margin-top 5px
+    height 16px
+    line-height 16px
+    overflow hidden
+
+    li
+      float left
+      margin-left 1.5rem
+      color #a4a4a4
+
+    li:first-child
+      margin-left 0
+
+  .search-keylist
+    margin 12px -10px -5px
+    background #fff
+
+    .keylist li
+      padding 10px 14px
+      border-bottom 1px #F0F0F0 solid
+      color #000
+
+      strong
+        font-weight normal
+        color dred
+
+#search-footer
+  padding 0 10px
+  background #fff
+
+  > .search-keywords
+    margin 0 -10px
+
+    > p
+      padding-left 10px
+
+      > a
+        display inline-block
+        margin-right 10px
+        line-height 20px
+        color dblue
+
+    > .w-title-linethrough
+      margin 10px 0 5px
+
+  > .search-trigger
+    display block
+    margin-top 8px
+    height 38px
+    border 1px dred solid
+    text-align right
+    background #fff
+
+    &:after
+      content ''
+      display inline-block
+      width 44px
+      height 100%
+      background dred url(../img/btn-search.png) 50% 50% no-repeat
+      background-size 25px
+
+// Footer
+#footer
+  margin-top 30px
+  padding 15px 0 30px
+  // padding 15px 0 70px
+  text-align center
+  background lgray
+
+  nav ul
+    height 14px
+    line-height 14px
+    font-size 0
+
+    li
+      display inline-block
+      padding 0 10px
+      border-left 1px #ccc solid
+      font-size 1.2rem
+      color: dred
+
+    li:first-child
+      border-left none
+
+    &.sublinks
+      margin-top 10px
+
+      li
+        padding 0 8px
+        color: #999
+
+  nav hr
+    border-color #D5D5D5
+    margin 12px 0 15px
+
+  nav .actions li
+    font-size 1.3rem
+
+  .copyright
+    margin 5px 0
+    color: #666
+
+// Main
+#main
+  background #fff
+
+  .pagetitle
+    padding 0 10px
+    height 30px
+    line-height 30px
+    overflow hidden
+    color #000
+    font-size 1.4rem
+    font-weight bold
+    background #eee
+
+// Cart
+// .cart-wrap
+//   margin-top -15px
+//   height 55px
+
+#cart
+  position fixed
+  z-index 1
+  bottom 0
+  width 100%
+  height 55px
+  line-height 55px
+  text-align center
+  // background #404040
+  background rgba(55, 55, 55, .95)
+
+  > i
+    absolute left top
+    z-index 1
+    size 22px
+    border-radius 0 0 22px 0
+    background #000
+
+    &:before
+    &:after
+      content ''
+      position absolute
+      left 50%
+      top 50%
+      // margin-left -6px
+      margin-left -9px
+      margin-top -2px
+      width 12px
+      height 2px
+      background #fff
+      transform rotate(45deg)
+
+    &:after
+      transform rotate(135deg)
+
+  > .content
+    position relative
+    display inline-block
+    height 100%
+    padding-left 45px
+    font-size 16px
+    font-family Arial
+    color #fff
+    background url(../img/icon-cart.png) 0 50% no-repeat
+    background-size 31px
+
+    > .counter
+      position absolute
+      top 18px
+      left 40px
+      padding 0 5px
+      height 18px
+      line-height 18px
+      // overflow hidden
+      min-width 0
+      max-width 200px
+      border-radius 9px
+      color #fff
+      font-size 14px
+      font-weight normal
+      background #D50203
+      transform translate(-100%, -50%)
+
+  &.fold
+    z-index 111
+    bottom 15px
+    right 15px
+    width 50px
+    height 50px
+    line-height 50px
+    background dorange
+    border-radius 25px
+    box-shadow 0 0 0 2px rgba(160, 160, 160, .2)
+    // box-shadow 0 0 1px 3px #E5E5E5
+    -webkit-user-select none
+    -webkit-tap-highlight-color rgba(0, 0, 0, 0)
+
+    > i
+      display none
+
+    > .content
+      position absolute
+      top 50%
+      left 50%
+      transform translate(-50%, -50%)
+      display block
+      width 31px
+      height 100%
+      padding-left 0
+      font-size 0
+      background url(../img/icon-cart.png) 50% 50% no-repeat
+      background-size 31px
+
+      > .counter
+        top 15px
+        left 38px
+        color dred
+        background #fff
+
+// 首页
+#categories
+  .category
+    position relative
+    padding 10px 0 10px 10px
+    // padding 10px
+    border-top 1px #ddd solid
+    overflow hidden
+    font-size 1.2rem
+    font-family Arial
+    color #000
+
+    > .pic
+      float left
+      width 82px
+      margin-right 10px
+      color dred
+
+      > span
+        display block
+        max-height 28px
+        line-height 14px
+        overflow hidden
+        // word-wrap break-word
+
+      > img
+        margin-top 7px
+        width 100%
+        // max-height 55px
+
+    > .slider-wrap
+      position relative
+      overflow hidden
+      padding-right 10px
+
+      > .slider
+        position relative
+        overflow hidden
+        visibility hidden
+        // padding-right 20px
+
+        > .list
+          position relative
+          overflow hidden
+          // width 9999px
+
+          > .item
+            position relative
+            float left
+            width 100%
+            // width 200px
+
+            > a
+              position relative
+              float left
+              margin-bottom 10px
+              padding 0 7px 0 7px
+              height 30px
+              line-height 15px
+              overflow hidden
+              width 50%
+              color #000
+
+              &:before
+                content ''
+                position absolute
+                left 0
+                top 7px
+                width 2px
+                height 2px
+                background #838383
+
+            &:last-child > a:last-child
+              color dred
+
+              &:after
+                content '>>'
+                margin-left .2em
+                font-family Serif
+                font-size .9em
+
+      > .nav
+        position absolute
+        z-index 1
+        right 0
+        top 0
+        // bottom 0
+        width 17px
+        height 100%
+        background-position left center
+        background-position right 10px center
+        background-repeat no-repeat
+        background-size 7px
+        background-color #fff
+        background-image url(../img/btn-siwpe-nav.png)
+
+        &.prev
+          transform rotate(180deg)
+          background-position right center
+          background-position left 10px center
+
+    &:first-child
+      border-top 0
+
+    // &.hidden
+    //   position absolute
+    //   left -9999px
+    //   width 100%
+
+    &.all
+      // display none
+
+      > h2
+        margin-bottom 5px
+        font-size 1.3rem
+        color dred
+
+      > ul a
+        display block
+        height 24px
+        line-height 24px
+
+  > .viewmore
+    display block
+    margin 0 10px 20px
+    padding 0
+    height 38px
+    border-radius 5px
+    color #fff
+    font 1.6rem/38px fonts
+    text-align center
+    background linear-gradient(top, #D70303, #CC0000)
+    box-shadow 1px 1px rgba(0, 0, 0, .38)
+
+    &:after
+      content ''
+      display inline-block
+      margin -4px 0 0 10px
+      width 8px
+      height 8px
+      border 1px #f7f7f7 solid
+      border-width 0 1px 1px 0
+      transform rotate(45deg)
+      vertical-align middle
+
+    &.unfold:after
+      margin 0 0 -4px 10px
+      border-width 1px 0 0 1px
+
+// 分类页
+#main > .subcats
+  padding 5px 0 10px
+
+  > .cat
+    clearfix()
+    padding 10px
+    border-bottom 1px #ddd solid
+    font-size 1.4rem
+
+    > a
+      float left
+      width 50px
+      margin 5px 10px 0 0
+      // outline 1px solid #c00
+
+      > img
+        width 100%
+        // max-height 55px
+
+    > dl
+      overflow hidden
+
+      a
+        display block
+        height 26px
+        line-height 26px
+        overflow hidden
+        white-space nowrap
+        text-overflow ellipsis
+        color dblue
+
+        > span
+          font-size 1rem
+          color #999
+
+      dt
+        font-weight bold
+        font-size 1.6rem
+
+      dd a
+        position relative
+        padding-left 7px
+
+        &:before
+          content ''
+          position absolute
+          left 0
+          top 50%
+          margin-top -1px
+          width 2px
+          height 2px
+          background #838383
+
+// 横屏
+// @media only screen and (min-device-width 321px)
+// @media only screen and (max-device-height 360px)
+@media only screen and (orientation landscape)
+  #main > .subcats > .cat > dl dd
+    float left
+    width 50%
+
+    &:nth-child(even)
+      padding-right 1rem
+
+// 搜索结果页
+#main > .search-result
+  padding 5px 0 10px
+
+  > section
+    clearfix()
+    padding 10px
+    border-bottom 1px #ddd solid
+    line-height 1.2
+    font-size 1.3rem
+
+    > .product
+      position relative
+
+      > .pic
+        float left
+        width 75px
+        margin 5px 10px 0 0
+        // outline 1px solid #c00
+
+        > img
+          width 100%
+
+      > .info
+        overflow hidden
+        margin-right 29px
+
+        strong
+          // font-weight normal
+          color dred
+
+        em
+          color #000
+
+        dt > a
+          display block
+          color dblue
+          font-size 1.6rem
+          font-weight bold
+
+        dd
+          margin-top .3rem
+          color #666
+
+      > .actions
+        position absolute
+        right -10px
+        top 0
+        height 100%
+        width 39px
+
+        > .cart
+        > .fold
+          // position absolute
+          // top 0
+          display block
+          width 100%
+          height 50%
+          background url(../img/btn-cart.png) 0 80% no-repeat
+          background-position left bottom 8px
+          background-size 29px
+
+        > .fold
+          // top auto
+          // bottom 0
+          background-image url(../img/btn-fold.png)
+          background-position 0 20%
+          background-position left top 8px
+          // transform rotate(180deg)
+
+        > .cart.added
+          background-image url(../img/btn-cart-added.png)
+
+    > .contact
+      display none
+      clear both
+      padding-top 1.5rem
+      color #666
+
+      > h5 > a
+        display block
+        margin-bottom .3rem
+        color dblue
+        font-size 1.4rem
+        font-weight bold
+
+      > .btn
+        display block
+        margin-top 12px
+        height 30px
+        line-height 30px
+        border-radius 15px
+        text-align center
+        color #fff
+        font-size 1.6rem
+        font-weight bold
+        background linear-gradient(top, #FE9F03, #FC8B01)
+
+        &:before
+          content ''
+          display inline-block
+          width 17px
+          height 100%
+          margin-right 1rem
+          background url(../img/icon-email.png) 0 50% no-repeat
+          background-size contain
+          vertical-align top
+          // background-color #444
+
+    &.unfold
+      background #F7F7F7
+
+      > .product > .actions > .fold
+        // transform none
+        transform rotate(180deg)
+        background-position 100% 80%
+        background-position right bottom 8px
+
+      > .contact
+        display block
+
+    &.nobd
+      border 0
+
+  > .tips
+    margin-top -5px
+    height 34px
+    line-height 34px
+    border-bottom 1px #ddd solid
+    text-align center
+    font-size 1.3rem
+    color dred
+    background #FFF4E5
+
+// 详情页
+#main > .proshow
+  margin-top 15px
+
+  > .name
+    margin 15px 10px
+    text-align center
+    font-size 1.6rem
+    font-weight bold
+    color #000
+
+  > .info
+    > .main
+    > .sub
+      position relative
+      margin 10px
+
+      > .title
+        margin 15px 0
+        padding-top 12px
+        border-top 1px #DDD solid
+        color #333
+        font-size 1.4rem
+
+      > ul > li
+        margin 7px 0
+        color #959595
+        font-size 1.3rem
+        -webkit-text-size-adjust none
+
+        > .key
+          margin-right 5px
+          display inline-block
+          width 130px
+          color #959595
+
+        .val
+          color #000
+
+      > .get-latest-price
+        position absolute
+        right 0
+        top -5px
+        padding 0 6px
+        height 28px
+        line-height 28px
+        border 1px #CCC solid
+        font-size 1.3rem
+        color #000
+
+    > .learn-more
+      display block
+      margin 10px 0
+      border-top 1px #DDD solid
+      border-bottom 1px #DDD solid
+      padding 8px 0
+      text-align center
+      color #666
+      font-size 1.4rem
+
+      &:after
+        content ''
+        display inline-block
+        margin-left 7px
+        width 22px
+        height 7px
+        background url(../img/icon-arrow-down-gray.png) 50% 50% no-repeat
+        background-size contain
+
+      &.unfold:after
+        transform rotate(180deg)
+
+    > .supplier
+      > .header
+        padding 0 10px 10px
+        border-bottom 1px #ddd solid
+        overflow hidden
+
+        > .title
+          float left
+          height 30px
+          line-height 30px
+          font-size 1.4rem
+          color: #999
+
+        > .btn-contact
+          float right
+          padding 0 10px
+          height 30px
+          line-height 30px
+          color #fff
+          border-radius 15px
+          font-size 1.4rem
+          background linear-gradient(top, #FE9F03, #FC8B01)
+
+          &:before
+            content ''
+            display inline-block
+            margin-right 5px
+            width 17px
+            height 100%
+            background url(../img/icon-email.png) 0 50% no-repeat
+            background-size contain
+            vertical-align top
+            // background-color #444
+
+      > .body
+        padding 10px
+        font-size 1.3rem
+
+        > .title
+          margin-bottom 5px
+          // font-weight bold
+          color dblue
+
+        > address
+          color #797979
+
+        > summary
+          color #000
+
+        > .contacts
+          margin-top 10px
+
+          > li
+            margin 5px 0
+            color dblue
+            padding-left 22px
+            background-repeat no-repeat
+            background-position 0 1px
+            background-size 15px
+
+            &.tel
+              background-image url(../img/icon-tel.png)
+
+            &.phone
+              background-image url(../img/icon-phone.png)
+
+            &.room
+              background-image url(../img/icon-room.png)
+
+            > small
+              display block
+              font-size .95rem
+              color #666
+
+      > .footer
+        padding 15px 0
+        border-top 1px #ddd solid
+
+        > .share
+          text-align center
+          font-size 0
+
+          > a
+            display inline-block
+            margin 0 5px
+            width 24px
+            height 24px
+            background url(../img/icon-shares.png) no-repeat
+            background-size 24px
+
+            &.facebook
+              background-position 0 0
+
+            &.twitter
+              background-position 0 -24px
+
+            &.googleplus
+              background-position 0 -48px
+
+            &.linkedin
+              background-position 0 -72px
+
+            &.delicious
+              background-position 0 -96px
+
+            &.reddit
+              background-position 0 -120px
+
+            &.pinterest
+              background-position 0 -144px
+
+            &.stumbleupon
+              background-position 0 -168px
+
+            &.email
+              background-position 0 -192px
+
+// Contact bar
+#contact-bar
+  display flex
+  flex-wrap wrap
+  justify-content space-between
+  position fixed
+  z-index 1
+  bottom 0
+  width 100%
+  height 40px
+  line-height 40px
+  text-align center
+  color #fff
+  background rgba(251, 180, 60, .9)
+
+  > a
+    flex 1
+    padding 0 10px
+    border-right 1px solid rgba(255, 255, 255, .5)
+    font-size 14px
+
+    &:nth-child(2)
+      flex 1 115px
+
+    &.cart
+      border none
+      background url(../img/icon-cart.png) 50% 50% no-repeat
+      background-size 30px
+
+      &.added
+        background-image url(../img/btn-cart-added-white.png)
+
+html.details #cart
+  bottom 55px
+
+// 询盘发送成功页
+#main > .send-success
+  padding 10px
+  text-align center
+
+  > .msg
+    margin 10px 0 30px
+    color #959595
+
+    &:before
+      content ''
+      display inline-block
+      margin-right 1em
+      width 23px
+      height 23px
+      background url(../img/icon-send-success.png) 50% 50% no-repeat
+      background-size contain
+      vertical-align middle
+  > .links a
+    display inline-block
+    margin 10px 0
+    color dred
+    font-weight bold
+
+    &.goback
+      color dblue
+      text-decoration underline
+
+// 询盘登录/注册页
+
+// 询盘页
+#main > .send-inquiry > section
+  margin 10px
+  clearfix()
+
+  &.msg textarea
+    padding .5rem
+    width 100%
+    min-height 90px
+    border 1px #ccc solid
+    color #444
+    // font-size 1.4rem
+    line-height 1.5
+
+  &.tpls
+    > .tips
+      float left
+      color #959595
+
+    > .switcher
+      float right
+      color dblue
+
+      &:after
+        content ''
+        display inline-block
+        margin -2px 0 0 6px
+        width 4px
+        height 4px
+        border 1px currentColor solid
+        border-width 0 1px 1px 0
+        transform rotate(45deg)
+        vertical-align middle
+
+      &.unfold:after
+        margin 0 0 -2px 5px
+        border-width 1px 0 0 1px
+
+    > .tpls-wrap
+      clear both
+      text-align justify
+      text-align-last justify
+      font-size 0
+
+      &:after
+        content ''
+        display inline-block
+        width 100%
+        height 0
+        overflow hidden
+
+      > label
+        display inline-block
+        margin-top 10px
+        width 145px
+        height 32px
+        line-height 32px
+        overflow hidden
+        border 1px #ccc solid
+        text-align center
+        font-size 1.2rem
+        color #A2A2A2
+        background #fff
+
+        &.selected
+          color lorange
+          border-color currentColor
+
+        > input
+          display none
+
+  &.submit button
+    display block
+    width 100%
+    border 0
+    height 32px
+    line-height 32px
+    text-align center
+    color #fff
+    font-size 1.4rem
+    // font-weight bold
+    background lorange
+
+    &:before
+      content ''
+      display inline-block
+      width 17px
+      height 100%
+      margin-right .7rem
+      background url(../img/icon-email.png) 0 50% no-repeat
+      background-size contain
+      vertical-align top
+
+  &.opts label
+    position relative
+    display block
+    padding-left 15px
+    color #999
+    font-size 1rem
+
+    > input
+      position absolute
+      left 0
+      top 3px
+      width 12px
+      height 12px
+
+
+
+
+
+
+
+
+
+
+
+// 所有登录/注册页
+html.signin #footer
+  padding-top 10px
+
+  nav .actions
+  nav .mainlinks
+  nav hr
+    display none
+
+// 注册页
+.form-login
+  margin-bottom 5rem
+  .forget-password
+    margin-top 10px
+    text-align right
+    a
+      color blue
+  .reg-now
+    margin-top 2rem
+    text-align center
+    color #999
+    font-size .95rem
+    a
+      color green
+
+// 404
+.cnt-404
+  margin 5rem 10px
+  p
+    margin 1.5rem 0
+    text-align center
+    strong
+      font-size .9rem
+      color red
+    a
+      font-size .95rem
+      color blue
+      text-decoration underline
+
+// Media Queries
+// @media only screen and (min-width: 800px)
+
+// @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi)
