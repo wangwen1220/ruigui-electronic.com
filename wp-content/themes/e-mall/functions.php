@@ -5,20 +5,30 @@
  * @package Steven
  */
 
-// 加载主题设置框架
-require_once(TEMPLATEPATH . '/admin/panel.php');
-require_once(TEMPLATEPATH . '/admin/theme-form.php');
-require_once(TEMPLATEPATH . '/admin/theme-options.php');
+// SET THEME CONSTANTS
+define('THEME_DIR', get_template_directory());
+define('THEME_URI', get_template_directory_uri());
+define('THEME_VER', '1.0.0');
 
-require_once(TEMPLATEPATH .'/myfunctions.php');
+// SET FOLDER CONSTANTS
+define('ADMIN_DIR', TEMPLATEPATH. '/admin');
+
+// 加载主题设置框架
+require_once(ADMIN_DIR . '/panel.php');
+require_once(ADMIN_DIR . '/theme-form.php');
+require_once(ADMIN_DIR . '/theme-options.php');
+
+// TODO
+// require_once(TEMPLATEPATH .'/myfunctions.php');
 
 /**
  * Set the content width based on the theme's design and stylesheet.
  */
-if (! isset($content_width))
-  $content_width = 640; /* pixels */
+if (!isset($content_width)) {
+  $content_width = 960; // pixels
+}
 
-if (! function_exists('emall_setup')) :
+if (!function_exists('emall_setup')) :
   /**
    * Sets up theme defaults and registers support for various WordPress features.
    *
@@ -33,7 +43,7 @@ if (! function_exists('emall_setup')) :
      * If you're building a theme based on emall, use a find and replace
      * to change 'emall' to the name of your theme in all the template files
      */
-    load_theme_textdomain('emall', get_template_directory() . '/languages');
+    load_theme_textdomain('emall', THEME_DIR . '/languages');
 
     /**
      * Add default posts and comments RSS feed links to head
@@ -56,8 +66,8 @@ if (! function_exists('emall_setup')) :
     //   'footer-menu'  => __('页脚菜单')
     // ));
     register_nav_menus(array(
-      'topbar-menu' => '顶部菜单',
       'nav-menu' => '导航菜单',
+      'topbar-menu' => '顶部菜单',
       'footer-menu'  => '页脚菜单'
     ));
     // register_nav_menus(array( 'sub_footer_menu' => 'Footer Menu', ));
@@ -98,7 +108,56 @@ function my_remove_recent_comments_style() {
   remove_action('wp_head', array($wp_widget_factory -> widgets['WP_Widget_Recent_Comments'], 'recent_comments_style'));
 }
 
-/*** 获取缩略图 **/
+// 获取导航菜单
+function get_nav_menu() {
+  // echo str_replace('</ul></div>', '', ereg_replace('<div[^>]*><ul[^>]*>', '', wp_nav_menu(array(
+  //   'theme_location' => 'nav-menu',
+  //   'echo' => false,
+  //   'depth' => 1
+  // ))));
+
+  $args = array(
+    'theme_location' => 'nav-menu',
+    'container' => false,
+    // 'menu_id' => '',
+    'menu_class' => 'menu-list',
+    'items_wrap' => '<ul class="%2$s">%3$s</ul>',
+    'fallback_cb' => 'emall_nav_menu',
+    'depth' => 1
+  );
+
+  wp_nav_menu($args);
+}
+
+function emall_nav_menu() {
+  $args = array(
+    'title_li' => null,
+    'sort_column' => 'menu_order',
+    'depth' => 1
+  );
+
+  echo '<ul>' . "\n";
+  wp_list_pages($args);
+  echo '</ul>' . "\n";
+}
+
+/**
+ * 移除菜单的多余的 id 和 class
+ * From http://www.wpdaxue.com/remove-wordpress-nav-classes.html
+ */
+add_filter('nav_menu_css_class', 'my_css_attributes_filter', 100, 1);
+add_filter('nav_menu_item_id', 'my_css_attributes_filter', 100, 1);
+add_filter('page_css_class', 'my_css_attributes_filter', 100, 1);
+
+function my_css_attributes_filter($var) {
+  // 全部移除
+  // return is_array($var) ? array() : '';
+
+  // 保留：current-post-ancestor, current-menu-ancestor, current-menu-item, current-menu-parent
+  return is_array($var) ? array_intersect($var, array('menu-item', 'current-menu-item', 'current-post-ancestor', 'current-menu-ancestor', 'current-menu-parent')) : '';
+}
+
+/*** 获取缩略图 ***/
 function get_post_img($id = null, $width = '122', $height = '140') {
   if ($id) {
     $post = get_post($id);
@@ -133,85 +192,84 @@ function pagenavi() {
       'prev_next' => false
    );
 
-    if ($wp_rewrite->using_permalinks())
-      $pagination['base'] = user_trailingslashit(trailingslashit(remove_query_arg('s', get_pagenum_link(1))) . 'page/%#%/', 'paged');
-    if (!empty($wp_query -> query_vars['s']))
-      $pagination['add_args'] = array('s' => get_query_var('s'));
+  if ($wp_rewrite -> using_permalinks()) {
+    $pagination['base'] = user_trailingslashit(trailingslashit(remove_query_arg('s', get_pagenum_link(1))) . 'page/%#%/', 'paged');
+  }
+  if (!empty($wp_query -> query_vars['s'])) {
+    $pagination['add_args'] = array('s' => get_query_var('s'));
 
-    previous_posts_link('上一页','');
+    previous_posts_link('Prev','');
     echo paginate_links($pagination);
-    next_posts_link('下一页','');
+    next_posts_link('Next','');
+  }
   if ($pagination['total'] > 1) {
     // code
   }
 }
 
-/**** 归档页标签 ***/
+/*** 归档页标签 ***/
 function get_category_tags($args) {
     global $wpdb;
-    $tags = $wpdb -> get_results
-    ("
-        SELECT DISTINCT terms2.term_id as tag_id, terms2.name as tag_name, null as tag_link
-        FROM
-            wp_posts as p1
-            LEFT JOIN wp_term_relationships as r1 ON p1.ID = r1.object_ID
-            LEFT JOIN wp_term_taxonomy as t1 ON r1.term_taxonomy_id = t1.term_taxonomy_id
-            LEFT JOIN wp_terms as terms1 ON t1.term_id = terms1.term_id,
-            wp_posts as p2
-            LEFT JOIN wp_term_relationships as r2 ON p2.ID = r2.object_ID
-            LEFT JOIN wp_term_taxonomy as t2 ON r2.term_taxonomy_id = t2.term_taxonomy_id
-            LEFT JOIN wp_terms as terms2 ON t2.term_id = terms2.term_id
-        WHERE
-            t1.taxonomy = 'category' AND p1.post_status = 'publish' AND terms1.term_id IN (".$args['categories'].") AND
-            t2.taxonomy = 'post_tag' AND p2.post_status = 'publish'
-            AND p1.ID = p2.ID
-        ORDER by tag_name
+    $tags = $wpdb -> get_results("
+      SELECT DISTINCT terms2.term_id as tag_id, terms2.name as tag_name, null as tag_link
+      FROM
+        wp_posts as p1
+        LEFT JOIN wp_term_relationships as r1 ON p1.ID = r1.object_ID
+        LEFT JOIN wp_term_taxonomy as t1 ON r1.term_taxonomy_id = t1.term_taxonomy_id
+        LEFT JOIN wp_terms as terms1 ON t1.term_id = terms1.term_id,
+        wp_posts as p2
+        LEFT JOIN wp_term_relationships as r2 ON p2.ID = r2.object_ID
+        LEFT JOIN wp_term_taxonomy as t2 ON r2.term_taxonomy_id = t2.term_taxonomy_id
+        LEFT JOIN wp_terms as terms2 ON t2.term_id = terms2.term_id
+      WHERE
+        t1.taxonomy = 'category' AND p1.post_status = 'publish' AND terms1.term_id IN (".$args['categories'].") AND
+        t2.taxonomy = 'post_tag' AND p2.post_status = 'publish'
+        AND p1.ID = p2.ID
+      ORDER by tag_name
     ");
     $count = 0;
     foreach ($tags as $tag) {
-        $tags[$count]->tag_link = get_tag_link($tag->tag_id);
-        $count++;
+      $tags[$count] -> tag_link = get_tag_link($tag -> tag_id);
+      $count++;
     }
     return $tags;
 }
 
-/******自定义评论*****/
+// TODO
+/*** 自定义评论 ***/
 function mytheme_comment($comment, $args, $depth) {
-$GLOBALS['comment'] = $comment; ?>
-<div id="comment-<?php comment_ID(); ?>" class="user">
-<?php
-if($comment->user_id){
-$user_info = get_userdata($comment->user_id);
-?>
-<?php echo get_avatar($comment->user_id, 30); ?>
-<?php }else{
-echo get_avatar($comment, 30,'',$comment->comment_author);
+  $GLOBALS['comment'] = $comment; ?>
+  <div id="comment-<?php comment_ID(); ?>" class="user">
+  <?php
+  if ($comment -> user_id) {
+    $user_info = get_userdata($comment->user_id);
+  ?>
+  <?php echo get_avatar($comment -> user_id, 30); ?>
+  <?php } else {
+    echo get_avatar($comment, 30,'',$comment->comment_author);
+  }
+  ?>
+  <?php printf(__('<p class="book_cmts"><span class="u"><a href="javascript:;">%s</a></span>'), get_comment_author_link()) ?>
+  <?php if ($comment -> comment_approved == '0') : ?>
+    <em><?php _e('Your comment is awaiting moderation.') ?></em>
+    <br />
+  <?php endif; ?>
+  <?php comment_text() ?>
+    </div>
+  <?php
 }
-?>
-<?php printf(__('<p class="book_cmts"><span class="u"><a href="javascript:void(0)">%s</a></span>'), get_comment_author_link()) ?>
-<?php if ($comment->comment_approved == '0') : ?>
-<em><?php _e('Your comment is awaiting moderation.') ?></em>
-<br />
-<?php endif; ?>
-<?php comment_text() ?>
-</div>
-<?php
-}
-
-
-
 
 function wp_bac_breadcrumb() {
     //Variable (symbol >> encoded) and can be styled separately.
     //Use >> for different level categories (parent >> child >> grandchild)
-            $delimiter = ' &raquo; ';
+    $delimiter = ' &raquo; ';
     //Use bullets for same level categories (parent . parent)
     $delimiter1 = '<span class="delimiter1"> &bull; </span>';
 
     //text link for the 'Home' page
-            $main = '首页';
+    $main = '首页';
     //Display only the first 30 characters of the post title.
-            $maxLength= 30;
+    $maxLength= 30;
 
     //variable for archived year
     $arc_year = get_the_time('Y');
@@ -234,7 +292,6 @@ function wp_bac_breadcrumb() {
 
     //Check if NOT the front page (whether your latest posts or a static page) is displayed. Then add breadcrumb trail.
     if (!is_front_page()) {
-
         global $post, $cat;
         //A safe way of getting values for a named option from the options database table.
         $homeLink = get_option('home'); //same as: $homeLink = get_bloginfo('url');
@@ -415,16 +472,16 @@ add_action('widgets_init', 'emall_widgets_init');
 function emall_scripts() {
   wp_enqueue_style('emall-style', get_stylesheet_uri());
 
-  wp_enqueue_script('emall-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true);
+  wp_enqueue_script('emall-navigation', THEME_URI . '/js/navigation.js', array(), '20120206', true);
 
-  wp_enqueue_script('emall-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true);
+  wp_enqueue_script('emall-skip-link-focus-fix', THEME_URI . '/js/skip-link-focus-fix.js', array(), '20130115', true);
 
   if (is_singular() && comments_open() && get_option('thread_comments')) {
     wp_enqueue_script('comment-reply');
   }
 
   if (is_singular() && wp_attachment_is_image()) {
-    wp_enqueue_script('emall-keyboard-image-navigation', get_template_directory_uri() . '/js/keyboard-image-navigation.js', array('jquery'), '20120202');
+    wp_enqueue_script('emall-keyboard-image-navigation', THEME_URI . '/js/keyboard-image-navigation.js', array('jquery'), '20120202');
   }
 }
 add_action('wp_enqueue_scripts', 'emall_scripts');
@@ -432,29 +489,29 @@ add_action('wp_enqueue_scripts', 'emall_scripts');
 /**
  * Implement the Custom Header feature.
  */
-//require get_template_directory() . '/inc/custom-header.php';
+//require THEME_DIR . '/inc/custom-header.php';
 
 /**
  * Custom template tags for this theme.
  */
-require get_template_directory() . '/inc/template-tags.php';
+require THEME_DIR . '/inc/template-tags.php';
 
 /**
  * Custom functions that act independently of the theme templates.
  */
-require get_template_directory() . '/inc/extras.php';
+require THEME_DIR . '/inc/extras.php';
 
 /**
  * Customizer additions.
  */
-require get_template_directory() . '/inc/customizer.php';
+require THEME_DIR . '/inc/customizer.php';
 
 /**
  * Load Jetpack compatibility file.
  */
-require get_template_directory() . '/inc/jetpack.php';
+require THEME_DIR . '/inc/jetpack.php';
 
 /**
  * WordPress.com-specific functions and definitions.
  */
-//require get_template_directory() . '/inc/wpcom.php';
+//require THEME_DIR . '/inc/wpcom.php';

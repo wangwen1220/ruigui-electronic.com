@@ -79,9 +79,7 @@ if (is_home()) {
 
   <nav id="nav">
     <div class="wrapper">
-      <ul>
-        <?php wp_nav_menu(array('theme_location' => 'nav-menu', 'container' => '')); ?>
-      </ul>
+      <?php get_nav_menu(); ?>
       <div class="fr top_search"><?php get_search_form(); ?></div>
     </div>
   </nav>
