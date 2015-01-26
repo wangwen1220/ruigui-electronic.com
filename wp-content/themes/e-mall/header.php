@@ -5,30 +5,8 @@
  * Displays all of the <head> section and everything up till <div id="main">
  *
  * @package Steven
+ *
  */
-
-// 设置 keywords 和 description
-if (is_home()) {
-  $keywords = get_option('index_key');
-  $description = get_option('desc_textarea');
-} elseif (is_single() || is_page()) {
-  $keywords = tagtext();
-  $description = get_the_title();
-} elseif (is_category()) {
-  $description = category_description();
-  if (!empty($description) && get_query_var('paged')) {
-    $description .= '(page'.get_query_var('paged').
-    ')';
-  }
-  $keywords = single_cat_title('', false);
-} elseif (is_tag()) {
-  $description = tag_description();
-  if (!empty($description) && get_query_var('paged')) {
-    $description .= '(page'.get_query_var('paged').
-    ')';
-  }
-  $keywords = single_tag_title('', false);
-}
 ?><!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -38,17 +16,14 @@ if (is_home()) {
   <meta name="renderer" content="webkit">
   <meta name="viewport" content="width=device-width">
   <meta name="author" content="Steven">
-  <meta name="keywords" content="<?php echo $keywords; ?>">
-  <meta name="description" content="<?php echo $description; ?>">
+  <?php do_action('wp_seo'); ?>
+  <!-- <meta name="keywords" content="<?php echo '$keywords'; ?>"> -->
+  <!-- <meta name="description" content="<?php echo '$description'; ?>"> -->
   <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
-  <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
-  <script src="<?php bloginfo('template_url'); ?>/js/cssrefresh.js"></script>
+  <!-- <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>"> -->
+  <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/style.css?v=<?php echo time(); ?>">
+  <!-- <script src="<?php bloginfo('template_url'); ?>/js/cssrefresh.js"></script> -->
   <script src="<?php bloginfo('template_url'); ?>/js/head.js"></script>
-  <script src="<?php bloginfo('template_url'); ?>/js/jquery-2.1.3.js"></script>
-  <script src="<?php bloginfo('template_url'); ?>/js/atooltip.jquery.js"></script>
-  <script src="<?php bloginfo('template_url'); ?>/js/jquery.masonry.min.js"></script>
-  <script src="<?php bloginfo('template_url'); ?>/js/jquery.lazyload.js"></script>
-  <script src="<?php bloginfo('template_url'); ?>/js/site.js"></script>
   <!--[if lt IE 9]>
   <script src="<?php bloginfo('template_url'); ?>/js/ie/respond.js"></script>
   <script src="<?php bloginfo('template_url'); ?>/js/ie/nwmatcher.js"></script>
@@ -80,6 +55,6 @@ if (is_home()) {
   <nav id="nav">
     <div class="wrapper">
       <?php get_nav_menu(); ?>
-      <div class="fr top_search"><?php get_search_form(); ?></div>
+      <!-- <?php get_search_form(); ?> -->
     </div>
   </nav>

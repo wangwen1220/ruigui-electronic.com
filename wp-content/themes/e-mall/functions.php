@@ -11,12 +11,12 @@ define('THEME_URI', get_template_directory_uri());
 define('THEME_VER', '1.0.0');
 
 // SET FOLDER CONSTANTS
-define('ADMIN_DIR', TEMPLATEPATH. '/admin');
+define('ADMIN_DIR', TEMPLATEPATH.'/admin');
 
 // 加载主题设置框架
-require_once(ADMIN_DIR . '/panel.php');
-require_once(ADMIN_DIR . '/theme-form.php');
-require_once(ADMIN_DIR . '/theme-options.php');
+require_once(ADMIN_DIR.'/panel.php');
+require_once(ADMIN_DIR.'/theme-form.php');
+require_once(ADMIN_DIR.'/theme-options.php');
 
 // TODO
 // require_once(TEMPLATEPATH .'/myfunctions.php');
@@ -43,7 +43,7 @@ if (!function_exists('emall_setup')) :
      * If you're building a theme based on emall, use a find and replace
      * to change 'emall' to the name of your theme in all the template files
      */
-    load_theme_textdomain('emall', THEME_DIR . '/languages');
+    load_theme_textdomain('emall', THEME_DIR.'/languages');
 
     /**
      * Add default posts and comments RSS feed links to head
@@ -80,6 +80,36 @@ if (!function_exists('emall_setup')) :
 endif; // end emall_setup
 
 add_action('after_setup_theme', 'emall_setup');
+
+// SEO 优化设置
+function emall_seo() {
+  global $keywords, $description;
+  if (is_home()) {
+    $keywords = get_option('index_key');
+    $keywords = 'index_key';
+    $description = get_option('desc_textarea');
+  } elseif (is_single() || is_page()) {
+    $keywords = tagtext();
+    $description = get_the_title();
+  } elseif (is_category()) {
+    $description = category_description();
+    if (!empty($description) && get_query_var('paged')) {
+      $description .= '(page'.get_query_var('paged').')';
+    }
+    $keywords = single_cat_title('', false);
+  } elseif (is_tag()) {
+    $description = tag_description();
+    if (!empty($description) && get_query_var('paged')) {
+      $description .= '(page'.get_query_var('paged').')';
+    }
+    $keywords = single_tag_title('', false);
+  }
+
+  echo '<meta name="keywords" content="'.$keywords.'">'."\n";
+  echo '<meta name="description" content="'.$description.'">'."\n";
+}
+
+add_action('wp_seo', 'emall_seo');
 
 // 优化 wp_head
 remove_action('wp_head', 'wp_enqueue_scripts', 1);
@@ -136,9 +166,9 @@ function emall_nav_menu() {
     'depth' => 1
   );
 
-  echo '<ul>' . "\n";
+  echo '<ul>'."\n";
   wp_list_pages($args);
-  echo '</ul>' . "\n";
+  echo '</ul>'."\n";
 }
 
 /**
@@ -193,7 +223,7 @@ function pagenavi() {
    );
 
   if ($wp_rewrite -> using_permalinks()) {
-    $pagination['base'] = user_trailingslashit(trailingslashit(remove_query_arg('s', get_pagenum_link(1))) . 'page/%#%/', 'paged');
+    $pagination['base'] = user_trailingslashit(trailingslashit(remove_query_arg('s', get_pagenum_link(1))).'page/%#%/', 'paged');
   }
   if (!empty($wp_query -> query_vars['s'])) {
     $pagination['add_args'] = array('s' => get_query_var('s'));
@@ -263,7 +293,7 @@ function wp_bac_breadcrumb() {
     //Variable (symbol >> encoded) and can be styled separately.
     //Use >> for different level categories (parent >> child >> grandchild)
     $delimiter = ' &raquo; ';
-    //Use bullets for same level categories (parent . parent)
+    //Use bullets for same level categories (parent.parent)
     $delimiter1 = '<span class="delimiter1"> &bull; </span>';
 
     //text link for the 'Home' page
@@ -296,7 +326,7 @@ function wp_bac_breadcrumb() {
         //A safe way of getting values for a named option from the options database table.
         $homeLink = get_option('home'); //same as: $homeLink = get_bloginfo('url');
         //If you don't like "You are here:", just remove it.
-        echo '<a href="' . $homeLink . '">' . $main . '</a>' . $delimiter;
+        echo '<a href="'.$homeLink.'">'.$main.'</a>'.$delimiter;
 
         //Display breadcrumb for single post
         if (is_single()) { //check if any single post is being displayed.
@@ -310,7 +340,7 @@ function wp_bac_breadcrumb() {
             //If you don't set a post to a category, WordPress will assign it a default category.
             if ($num_cat <=1)  //I put less or equal than 1 just in case the variable is not set (a catch all).
             {
-                echo get_category_parents($category[0],  true,' ' . $delimiter . ' ');
+                echo get_category_parents($category[0],  true,' '.$delimiter.' ');
                 //Display the full post title.
                 echo ' ' .'<span>'. get_the_title().'</span>';
             }
@@ -320,10 +350,10 @@ function wp_bac_breadcrumb() {
                 echo the_category($delimiter1, multiple);
                     //Display partial post title, in order to save space.
                     if (strlen(get_the_title()) >= $maxLength) { //If the title is long, then don't display it all.
-                        echo ' ' . $delimiter .'<span>'. trim(substr(get_the_title(), 0, $maxLength)) . ' ...</span>';
+                        echo ' '.$delimiter .'<span>'. trim(substr(get_the_title(), 0, $maxLength)).' ...</span>';
                     }
                     else { //the title is short, display all post title.
-                        echo ' ' . $delimiter .'<span>'. get_the_title().'</span>';
+                        echo ' '.$delimiter .'<span>'. get_the_title().'</span>';
                     }
             }
         }
@@ -332,20 +362,20 @@ function wp_bac_breadcrumb() {
             //returns the category title for the current page.
             //If it is a subcategory, it will display the full path to the subcategory.
             //Returns the parent categories of the current category with links separated by '»'
-            echo get_category_parents($cat, true,' ' . $delimiter . ' ');
+            echo get_category_parents($cat, true,' '.$delimiter.' ');
         }
         //Display breadcrumb for tag archive
         elseif (is_tag()) { //Check if a Tag archive page is being displayed.
             //returns the current tag title for the current page.
-            echo 'Posts Tagged: "' . single_tag_title("", false) . '"';
+            echo 'Posts Tagged: "'.single_tag_title("", false).'"';
         }
         //Display breadcrumb for calendar (day, month, year) archive
         elseif (is_day()) { //Check if the page is a date (day) based archive page.
-            echo '<a href="' . $url_year . '">' . $arc_year . '</a> ' . $delimiter . ' ';
-            echo '<a href="' . $url_month . '">' . $arc_month . '</a> ' . $delimiter . $arc_day . ' (' . $arc_day_full . ')';
+            echo '<a href="'.$url_year.'">'.$arc_year.'</a> '.$delimiter.' ';
+            echo '<a href="'.$url_month.'">'.$arc_month.'</a> '.$delimiter.$arc_day.' ('.$arc_day_full.')';
         }
         elseif (is_month()) {  //Check if the page is a date (month) based archive page.
-            echo '<a href="' . $url_year . '">' . $arc_year . '</a> ' . $delimiter . $arc_month;
+            echo '<a href="'.$url_year.'">'.$arc_year.'</a> '.$delimiter.$arc_month;
         }
         elseif (is_year()) {  //Check if the page is a date (year) based archive page.
             echo $arc_year;
@@ -361,7 +391,7 @@ function wp_bac_breadcrumb() {
             global $author;
             //returns the user's data, where it can be retrieved using member variables.
             $user_info = get_userdata($author);
-            echo  'Archived Article(s) by Author: ' . $user_info->display_name ;
+            echo  'Archived Article(s) by Author: '.$user_info->display_name ;
         }
         //Display breadcrumb for 404 Error
         elseif (is_404()) {//checks if 404 error is being displayed
@@ -472,16 +502,16 @@ add_action('widgets_init', 'emall_widgets_init');
 function emall_scripts() {
   wp_enqueue_style('emall-style', get_stylesheet_uri());
 
-  wp_enqueue_script('emall-navigation', THEME_URI . '/js/navigation.js', array(), '20120206', true);
+  wp_enqueue_script('emall-navigation', THEME_URI.'/js/navigation.js', array(), '20120206', true);
 
-  wp_enqueue_script('emall-skip-link-focus-fix', THEME_URI . '/js/skip-link-focus-fix.js', array(), '20130115', true);
+  wp_enqueue_script('emall-skip-link-focus-fix', THEME_URI.'/js/skip-link-focus-fix.js', array(), '20130115', true);
 
   if (is_singular() && comments_open() && get_option('thread_comments')) {
     wp_enqueue_script('comment-reply');
   }
 
   if (is_singular() && wp_attachment_is_image()) {
-    wp_enqueue_script('emall-keyboard-image-navigation', THEME_URI . '/js/keyboard-image-navigation.js', array('jquery'), '20120202');
+    wp_enqueue_script('emall-keyboard-image-navigation', THEME_URI.'/js/keyboard-image-navigation.js', array('jquery'), '20120202');
   }
 }
 add_action('wp_enqueue_scripts', 'emall_scripts');
@@ -489,29 +519,29 @@ add_action('wp_enqueue_scripts', 'emall_scripts');
 /**
  * Implement the Custom Header feature.
  */
-//require THEME_DIR . '/inc/custom-header.php';
+//require THEME_DIR.'/inc/custom-header.php';
 
 /**
  * Custom template tags for this theme.
  */
-require THEME_DIR . '/inc/template-tags.php';
+require THEME_DIR.'/inc/template-tags.php';
 
 /**
  * Custom functions that act independently of the theme templates.
  */
-require THEME_DIR . '/inc/extras.php';
+require THEME_DIR.'/inc/extras.php';
 
 /**
  * Customizer additions.
  */
-require THEME_DIR . '/inc/customizer.php';
+require THEME_DIR.'/inc/customizer.php';
 
 /**
  * Load Jetpack compatibility file.
  */
-require THEME_DIR . '/inc/jetpack.php';
+require THEME_DIR.'/inc/jetpack.php';
 
 /**
  * WordPress.com-specific functions and definitions.
  */
-//require THEME_DIR . '/inc/wpcom.php';
+//require THEME_DIR.'/inc/wpcom.php';

@@ -1,14 +1,16 @@
 <?php
 /**
- * The main template file.
+ * The main template file
  *
  * This is the most generic template file in a WordPress theme
  * and one of the two required files for a theme (the other being style.css).
  * It is used to display a page when nothing more specific matches a query.
- * E.g., it puts together the home page when no home.php file exists.
- * Learn more: http://codex.wordpress.org/Template_Hierarchy
+ * e.g., it puts together the home page when no home.php file exists.
  *
- * @package _s
+ * Learn more: {@link https://codex.wordpress.org/Template_Hierarchy}
+ *
+ * @package WordPress
+ *
  */
 
 get_header(); ?>
@@ -96,7 +98,7 @@ bannerShowBox.find("li").eq(i).show().siblings("li").hide();
 
 </script>
 
-</div>            
+</div>
 <div class="pagebox_ft"></div>
 </div>
 
@@ -160,7 +162,7 @@ echo '<img src="'.$img_url.'" alt="'.$post->post_title.'" width="270" />'
 
 </ul>
 </div>
-</div>            
+</div>
 <div class="pagebox_ft"></div>
 </div>
 <?php } ?>
@@ -176,7 +178,7 @@ if(get_option('index_shop_show')) { ?>
 <div class="box_cont">
 <div class="list clearfix">
 <ul>
-<?php 
+<?php
 query_posts("showposts=30&cat=".$shop_cat);
 while (have_posts()) : the_post();
 ?>
@@ -185,10 +187,9 @@ while (have_posts()) : the_post();
 </ul>
 </div>
 </div>
-</div>            
+</div>
 <div class="pagebox_ft"></div>
 </div>
 <?php } ?>
-	
 
 <?php get_footer(); ?>
