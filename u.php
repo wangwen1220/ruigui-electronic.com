@@ -99,7 +99,7 @@ a.arrow:hover {color:#ff0000;text-decoration:none;}
   <tr>
     <td class="er">软件管理设置</td>
     <td class="fl">
-    <a target="_blank" href='<?=_SERVER('PHP_SELF')?>?act=phpinfo'>PHP详细信息</a> | <a target="_blank" href="/phpmyadmin">phpMyAdmin管理</a>
+    <a target="_blank" href='<?=_SERVER('PHP_SELF')?>?act=phpinfo'>PHP详细信息</a> | <a target="_blank" href="/pmd">phpMyAdmin管理</a>
     </td>
   </tr>
 </table>
@@ -131,7 +131,7 @@ a.arrow:hover {color:#ff0000;text-decoration:none;}
   <tr>
     <td class="er">OpenSSL协议组件</td>
     <td class="fl"><?=function_exists('openssl_open') ? YES : NO ?></td>
-  </tr> 
+  </tr>
   <tr>
     <td class="er" >IMAP电子邮件函数库</td>
     <td class="fl"><?=function_exists('imap_close') ? YES : NO ?></td>
@@ -139,7 +139,7 @@ a.arrow:hover {color:#ff0000;text-decoration:none;}
   <tr>
     <td width="190" class="er">SendMail电子邮件支持</td>
     <td width="310" class="fl"><?=phpversion('standard') ? YES : NO ?></td>
-  </tr>  
+  </tr>
 </table>
 
 <table width="100%" class="inp">

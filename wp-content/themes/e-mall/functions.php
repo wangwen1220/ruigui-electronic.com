@@ -138,8 +138,8 @@ function my_remove_recent_comments_style() {
   remove_action('wp_head', array($wp_widget_factory -> widgets['WP_Widget_Recent_Comments'], 'recent_comments_style'));
 }
 
-// 获取导航菜单
-function get_nav_menu() {
+// 获取菜单
+function get_wp_menu($location) {
   // echo str_replace('</ul></div>', '', ereg_replace('<div[^>]*><ul[^>]*>', '', wp_nav_menu(array(
   //   'theme_location' => 'nav-menu',
   //   'echo' => false,
@@ -147,9 +147,8 @@ function get_nav_menu() {
   // ))));
 
   $args = array(
-    'theme_location' => 'nav-menu',
+    'theme_location' => $location.'-menu',
     'container' => false,
-    // 'menu_id' => '',
     'menu_class' => 'menu-list',
     'items_wrap' => '<ul class="%2$s">%3$s</ul>',
     'fallback_cb' => 'emall_nav_menu',

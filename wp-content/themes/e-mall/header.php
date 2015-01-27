@@ -54,7 +54,7 @@
 
   <nav id="nav">
     <div class="wrapper">
-      <?php get_nav_menu(); ?>
+      <?php get_wp_menu('nav'); ?>
       <!-- <?php get_search_form(); ?> -->
     </div>
   </nav>
