@@ -5,8 +5,8 @@ if ( !defined( 'ABSPATH' ) ) exit;
 /*
     Plugin Name: Child Theme Configurator
     Plugin URI: http://www.lilaeamedia.com/plugins/child-theme-configurator/
-    Description: Create a Child Theme and customize the stylesheet as you wish. Search, preview and modify any selector, rule or value using this fast CSS editor.
-    Version: 1.6.4
+    Description: Create a Child Theme and customize the stylesheet and templates. Fast CSS editor lets you search, preview and modify by selector, rule or value.
+    Version: 1.6.5
     Author: Lilaea Media
     Author URI: http://www.lilaeamedia.com/
     Text Domain: chld_thm_cfg
@@ -15,17 +15,18 @@ if ( !defined( 'ABSPATH' ) ) exit;
     Copyright (C) 2014-2015 Lilaea Media
 */
 
-    defined( 'LF' ) or define( 'LF', "\n" );
-    define( 'CHLD_THM_CFG_OPTIONS', 'chld_thm_cfg_options' );
-    define( 'CHLD_THM_CFG_VERSION', '1.6.4' );
-    define( 'CHLD_THM_CFG_MIN_WP_VERSION', '3.7' );
-    define( 'CHLD_THM_CFG_MAX_SELECTORS', '50000' );
-    define( 'CHLD_THM_CFG_MAX_RECURSE_LOOPS', '1000' );
-    define( 'CHLD_THM_CFG_MENU', 'chld_thm_cfg_menu' );
-    define( 'CHLD_THM_CFG_DIR', dirname( __FILE__ ) );
-    define( 'CHLD_THM_CFG_URL', plugin_dir_url( __FILE__ ) );
+    defined( 'LF' ) or define( 'LF',            "\n"                        );
+    define( 'CHLD_THM_CFG_OPTIONS',             'chld_thm_cfg_options'      );
+    define( 'CHLD_THM_CFG_VERSION',             '1.6.5'                     );
+    define( 'CHLD_THM_CFG_MIN_WP_VERSION',      '3.7'                       );
+    define( 'CHLD_THM_CFG_BPSEL',               '2500'                      );
+    define( 'CHLD_THM_CFG_MAX_RECURSE_LOOPS',   '1000'                      );
+    define( 'CHLD_THM_CFG_MENU',                'chld_thm_cfg_menu'         );
+    define( 'CHLD_THM_CFG_DIR',                 dirname( __FILE__ )         );
+    define( 'CHLD_THM_CFG_URL',                 plugin_dir_url( __FILE__ )  );
 
     class ChildThemeConfigurator {
+        static $instance;
         static function init() {
             // initialize languages
 	    	load_plugin_textdomain( 'chld_thm_cfg', FALSE, basename( CHLD_THM_CFG_DIR ) . '/lang' );
@@ -46,12 +47,13 @@ if ( !defined( 'ABSPATH' ) ) exit;
         }
         static function ctc() {
             // create admin object
-            global $chld_thm_cfg;
-            if ( !isset( $chld_thm_cfg ) ):
-                include_once( dirname( __FILE__ ) . '/includes/class-ctc.php' );
-                $chld_thm_cfg = new ChildThemeConfiguratorAdmin( __FILE__ );
+            global $chld_thm_cfg; /// backward compat
+            if ( !isset( self::$instance ) ):
+                include_once( CHLD_THM_CFG_DIR . '/includes/class-ctc.php' );
+                self::$instance = new ChildThemeConfiguratorAdmin( __FILE__ );
             endif;
-            return $chld_thm_cfg;
+            $chld_thm_cfg = self::$instance; /// backward compat
+            return self::$instance;
         }
         static function save() {
             // ajax write

@@ -5,7 +5,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
     Class: Child_Theme_Configurator_UI
     Plugin URI: http://www.lilaeamedia.com/plugins/child-theme-configurator/
     Description: Handles the plugin User Interface
-    Version: 1.6.4
+    Version: 1.6.5
     Author: Lilaea Media
     Author URI: http://www.lilaeamedia.com/
     Text Domain: chld_thm_cfg
@@ -17,8 +17,7 @@ class ChildThemeConfiguratorUI {
     // helper function to globalize ctc object
     
     function ctc() {
-        global $chld_thm_cfg; 
-        return $chld_thm_cfg;
+        return ChildThemeConfigurator::ctc();
     }
 
     function render() {
@@ -32,7 +31,14 @@ class ChildThemeConfiguratorUI {
         $id         = 0;
         $this->ctc()->fs_method = get_filesystem_method();
         add_thickbox();
-        add_action( 'chld_thm_cfg_related_links', array( $this, 'lilaea_plug' ) );
+        add_filter( 'chld_thm_cfg_files_tab_filter',    array( $this, 'render_files_tab_options' ) );
+        add_action( 'chld_thm_cfg_tabs',                array( $this, 'render_addl_tabs' ), 10, 4 );
+        add_action( 'chld_thm_cfg_panels',              array( $this, 'render_addl_panels' ), 10, 4 );
+        add_action( 'chld_thm_cfg_related_links',       array( $this, 'lilaea_plug' ) );
+        if ( $this->ctc()->is_debug ):
+            $this->ctc()->debug( 'adding new debug action...', __FUNCTION__ );
+            add_action( 'chld_thm_cfg_print_debug', array( $this->ctc(), 'print_debug' ) );
+        endif;
         include ( CHLD_THM_CFG_DIR . '/includes/forms/main.php' ); 
     } 
 
@@ -49,9 +55,10 @@ class ChildThemeConfiguratorUI {
     function render_theme_menu( $template = 'child', $selected = NULL ) {
          ?>
         <select class="ctc-select" id="ctc_theme_<?php echo $template; ?>" name="ctc_theme_<?php echo $template; ?>" style="visibility:hidden" <?php echo $this->ctc()->is_theme() ? '' : ' disabled '; ?> ><?php
-        foreach ( $this->ctc()->themes[ $template ] as $slug => $theme )
-            echo '<option value="' . $slug . '"' . ( $slug == $selected ? ' selected' : '' ) . '>' 
-                . esc_attr( $theme[ 'Name' ] ) . '</option>' . LF; ?>
+            foreach ( $this->ctc()->themes[ $template ] as $slug => $theme )
+                echo '<option value="' . $slug . '"' . ( $slug == $selected ? ' selected' : '' ) . '>' 
+                    . esc_attr( $theme[ 'Name' ] ) . '</option>' . LF; 
+        ?>
         </select>
         <div style="display:none">
         <?php 
@@ -191,9 +198,22 @@ class ChildThemeConfiguratorUI {
         }
     }
     
+    function render_addl_tabs( $ctc, $active_tab = NULL, $hidechild = '' ) {
+        include ( CHLD_THM_CFG_DIR . '/includes/forms/addl_tabs.php' );            
+    }
+
+    function render_addl_panels( $ctc, $active_tab = NULL, $hidechild = '' ) {
+        include ( CHLD_THM_CFG_DIR . '/includes/forms/addl_panels.php' );            
+    }
+
     function lilaea_plug() {
         include ( CHLD_THM_CFG_DIR . '/includes/forms/related.php' );
     }
     
+    function render_files_tab_options( $output ) {
+        $regex = '%<div class="ctc\-input\-cell clear">.*?(</form>).*%s';
+        $output = preg_replace( $regex, "$1", $output );
+        return $output;
+    }
 }
 ?>

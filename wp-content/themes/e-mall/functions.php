@@ -146,29 +146,30 @@ function get_wp_menu($location) {
   //   'depth' => 1
   // ))));
 
+  // 如果 theme_location 项给定的菜单没有在后台设置，下面有些设置项会失效
   $args = array(
     'theme_location' => $location.'-menu',
     'container' => false,
     'menu_class' => 'menu-list',
     'items_wrap' => '<ul class="%2$s">%3$s</ul>',
-    'fallback_cb' => 'emall_nav_menu',
+    // 'fallback_cb' => 'emall_nav_menu',
     'depth' => 1
   );
 
   wp_nav_menu($args);
 }
 
-function emall_nav_menu() {
-  $args = array(
-    'title_li' => null,
-    'sort_column' => 'menu_order',
-    'depth' => 1
-  );
+// function emall_nav_menu() {
+//   $args = array(
+//     'title_li' => null,
+//     'sort_column' => 'menu_order',
+//     'depth' => 1
+//   );
 
-  echo '<ul>'."\n";
-  wp_list_pages($args);
-  echo '</ul>'."\n";
-}
+//   echo '<ul>'."\n";
+//   wp_list_pages($args);
+//   echo '</ul>'."\n";
+// }
 
 /**
  * 移除菜单的多余的 id 和 class

@@ -23,7 +23,7 @@ body {
   font-size: 12px;
   line-height: 1.5;
   color: #444;
-  background: #f1f1f1 url(img/bg.gif);
+  background: #f7f7f7 url(img/bg.gif);
 }
 a {
   color: inherit;
@@ -195,34 +195,35 @@ hr, .hr {
 
 /* Nav */
 #nav {
-  height: 50px;
-  line-height: 50px;
+  height: 45px;
+  line-height: 45px;
   /*box-shadow: 0 1px 1px rgba(0, 0, 0, .3);*/
   color: #f1f1f1;
   background: #222;
 }
-#nav .menu-list:before,
-#nav .menu-list:after {
+#nav ul:before,
+#nav ul:after {
   content: '';
   display: table;
 }
-#nav .menu-list:after {
+#nav ul:after {
   clear: both;
 }
-#nav .menu-item {
+#nav li {
   float: left;
   margin-right: 2px;
 }
-#nav .menu-item a {
+#nav li a {
   display: block;
   padding: 0 2em;
   font-size: 15px;
   /*border-radius: 3px 3px 0 0;*/
 }
-#nav .current-menu-item a,
-#nav .menu-item a:hover {
+#nav li.current-menu-item a,
+#nav li.current_page_item a,
+#nav li a:hover {
   border-top: 2px #222 solid;
-  line-height: 48px;
+  line-height: 43px;
   color: #222;
   background: #fff;
 }
@@ -230,16 +231,31 @@ hr, .hr {
 /* Footer */
 #footer {
   margin-top: 30px;
-  padding: 30px 0;
+  padding: 25px 0 15px;
   /*border-top: 1px #eee solid;*/
   color: #eee;
   background: #222;
 }
-#footer .copyright,
-#footer .icpnum {
+#footer nav ul {
+  margin-bottom: 10px;
+  text-align: center;
+}
+#footer nav li {
+  display: inline-block;
+  padding: 0 12px;
+  border-left: 1px #888 solid;
+  line-height: 1;
+}
+#footer nav li:first-child {
+  border-left: 0;
+}
+#footer nav li a:hover {
+  text-decoration: underline;
+}
+#footer .copyright {
   line-height: 1.8;
   text-align: center;
-  color: #999;
+  color: #888;
 }
 
 /*** index css ***/
