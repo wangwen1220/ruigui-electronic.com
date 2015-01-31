@@ -23,7 +23,7 @@ get_header(); ?>
 
 						<header class="entry-header<?php echo $column1; ?>">
 							<?php thinkup_input_blogimage(); ?>
-						</header>		
+						</header>
 
 						<div class="entry-content<?php echo $column2; ?>">
 							<?php think_input_blogtitle(); ?>
@@ -34,7 +34,7 @@ get_header(); ?>
 						</div>
 
 					<div class="clearboth"></div>
-					</article><!-- #post-<?php get_the_ID(); ?> -->	
+					</article><!-- #post-<?php get_the_ID(); ?> -->
 
 				<?php endwhile; ?>
 
@@ -42,7 +42,7 @@ get_header(); ?>
 
 			<?php else: ?>
 
-				<?php get_template_part( 'no-results', 'archive' ); ?>		
+				<?php get_template_part( 'no-results', 'archive' ); ?>
 
 			<?php endif; ?>
 

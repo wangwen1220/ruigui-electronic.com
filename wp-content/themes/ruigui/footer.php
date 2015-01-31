@@ -8,11 +8,11 @@
  */
 ?>
 
-    </div><!-- #main-core -->
-    </div><!-- #main -->
+    </div><!-- /#main-core -->
+    </div><!-- /#main -->
     <?php /* Sidebar */ thinkup_sidebar_html(); ?>
   </div>
-  </div><!-- #content -->
+  </div><!-- /#content -->
 
   <footer>
     <?php thinkup_input_footerlayout(); ?>
@@ -31,9 +31,9 @@
       </p>
     </div>
     </div>
-  </footer><!-- footer -->
+  </footer><!-- /footer -->
 
-</div><!-- #body-core -->
+</div><!-- /#body-core -->
 
 <?php wp_footer(); ?>
 

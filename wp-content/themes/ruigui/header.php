@@ -4,31 +4,32 @@
  *
  * Displays all of the <head> section and everything up until id="main-core".
  *
- * @package ThinkUpThemes
+ * @package Steven
  */
 ?><!DOCTYPE html>
-
 <html <?php language_attributes(); ?>>
 <head>
-<?php thinkup_hook_header(); ?>
-<meta charset="<?php bloginfo( 'charset' ); ?>" />
-<meta name="viewport" content="width=device-width" />
-<title><?php wp_title( '|', true, 'right' ); ?></title>
-<link rel="profile" href="http://gmpg.org/xfn/11" />
-<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
-<!--[if lt IE 9]>
-<script src="<?php echo get_template_directory_uri(); ?>/lib/scripts/html5.js" type="text/javascript"></script>
-<![endif]-->
+	<?php thinkup_hook_header(); ?>
+	<meta charset="<?php bloginfo( 'charset' ); ?>" />
+	<meta name="viewport" content="width=device-width" />
+	<title><?php wp_title( '|', true, 'right' ); ?></title>
+	<link rel="profile" href="http://gmpg.org/xfn/11" />
+	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
+	<!--[if lt IE 9]>
+	<script src="<?php echo get_template_directory_uri(); ?>/lib/scripts/html5.js" type="text/javascript"></script>
+	<![endif]-->
 
-<?php wp_head(); ?>
-
+	<?php wp_head(); ?>
+	<script src="<?php bloginfo('template_url'); ?>/lib/scripts/cssrefresh.js"></script>
 </head>
 
 <body <?php body_class(); ?><?php thinkup_bodystyle(); ?>>
+<!--[if lt IE 9]>
+<div class="browsehappy">似乎您正在使用一个旧版本的 Internet Explorer。为了获得最佳的浏览体验，我们建议您<a href="http://browsehappy.com/" target="_blank">升级你的浏览器</a>。</div>
+<![endif]-->
 <div id="body-core" class="hfeed site">
 
 	<header id="site-header">
-
 		<?php if ( get_header_image() ) : ?>
 			<div class="custom-header"><img src="<?php header_image(); ?>" width="<?php echo get_custom_header()->width; ?>" height="<?php echo get_custom_header()->height; ?>" alt=""></div>
 		<?php endif; // End header image check. ?>
@@ -57,18 +58,19 @@
 			<a rel="home" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php /* Custom Logo */ thinkup_custom_logo(); ?></a>
 			</div>
 
-			<div id="header-links" class="main-navigation">
-			<div id="header-links-inner" class="header-links">
-				<?php wp_nav_menu(array('container' => false, 'theme_location'  => 'header_menu' ) ); ?>
-			</div>
-			</div>
-			<!-- #header-links .main-navigation -->
-
 			<?php /* Add responsive header menu */ thinkup_input_responsivehtml(); ?>
 
 		</div>
 		</div>
 		<!-- #header -->
+
+		<nav id="nav">
+		  <div class="wrapper">
+		    <?php get_wp_menu('nav'); ?>
+		    <!-- <?php get_search_form(); ?> -->
+		  </div>
+		</nav>
+
 		<?php /* Custom Slider */ thinkup_input_sliderhome(); ?>
 	</header>
 	<!-- header -->

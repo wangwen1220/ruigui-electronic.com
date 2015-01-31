@@ -234,3 +234,39 @@ function thinkup_widgets_init() {
     ) );
  }
 add_action( 'widgets_init', 'thinkup_widgets_init' );
+
+/* 设置菜单
+----------------------------------------------------------------------------- */
+function get_wp_menu($location) {
+  // echo str_replace('</ul></div>', '', ereg_replace('<div[^>]*><ul[^>]*>', '', wp_nav_menu(array(
+  //   'theme_location' => 'nav-menu',
+  //   'echo' => false,
+  //   'depth' => 1
+  // ))));
+
+  // 如果 theme_location 项给定的菜单没有在后台设置，下面有些设置项会失效
+  $args = array(
+    'theme_location' => $location.'-menu',
+    'container' => false,
+    'menu_class' => 'menu-list',
+    'items_wrap' => '<ul class="%2$s">%3$s</ul>',
+    // 'fallback_cb' => 'emall_nav_menu',
+    'depth' => 1
+  );
+
+  wp_nav_menu($args);
+}
+
+// 移除菜单的多余的 id 和 class
+// From http://www.wpdaxue.com/remove-wordpress-nav-classes.html
+add_filter('nav_menu_css_class', 'my_css_attributes_filter', 100, 1);
+add_filter('nav_menu_item_id', 'my_css_attributes_filter', 100, 1);
+add_filter('page_css_class', 'my_css_attributes_filter', 100, 1);
+
+function my_css_attributes_filter($var) {
+  // 全部移除
+  // return is_array($var) ? array() : '';
+
+  // 保留：current-post-ancestor, current-menu-ancestor, current-menu-item, current-menu-parent
+  return is_array($var) ? array_intersect($var, array('menu-item', 'current-menu-item', 'current-post-ancestor', 'current-menu-ancestor', 'current-menu-parent')) : '';
+}
