@@ -74,7 +74,7 @@ function wpjam_qiniutek_ob_cache(){
 
 function wpjam_qiniutek_cdn_replace($html){
 	if(wpjam_qiniutek_get_setting('useso')){
-		$html 	= str_replace(array('//ajax.googleapis.com','//fonts.googleapis.com'), array('//ajax.useso.com','//fonts.useso.com'), $html);
+		$html 	= str_replace(array('//ajax.googleapis.com','//fonts.googleapis.com'), array('//ajax.googleapis.com','//fonts.googleapis.com'), $html);
 	}
 	if(is_admin())	return $html;
 
@@ -82,8 +82,8 @@ function wpjam_qiniutek_cdn_replace($html){
 	$cdn_dirs	= str_replace('-','\-',wpjam_qiniutek_get_setting('dirs'));
 
 	// $html = preg_replace(
-	// 	'/<img src="(.*?)icon_(.*?)\\.gif" alt="(.*?)" class="wp-smiley" \/>/', 
-	// 	'<span class="wp-smiley emoji emoji-$2" title="$3">$3</span>', 
+	// 	'/<img src="(.*?)icon_(.*?)\\.gif" alt="(.*?)" class="wp-smiley" \/>/',
+	// 	'<span class="wp-smiley emoji emoji-$2" title="$3">$3</span>',
 	// 	$html
 	// );
 
@@ -160,7 +160,7 @@ function wpjam_pre_qiniu_remote($false, $image_url){
 		}
 	}
 
-	return $false;		
+	return $false;
 }
 
 function wpjam_qiniutek_generate_rewrite_rules($wp_rewrite){
@@ -203,5 +203,5 @@ function wpjam_qiniutek_loader_src($src, $handle){
 		$src = remove_query_arg(array('ver'), $src);
 		$src = add_query_arg('ver',get_option('timestamp'),$src);
 	}
-	return $src;		
+	return $src;
 }

@@ -1,17 +1,17 @@
 <?php
-/*
-  Plugin Name: WP Acceleration for China
-  Plugin URI: http://lomu.me/post/wp-acceleration-for-china
-  Description: 替换Google CDN文件、Gravatar头像链接，加快WordPress打开速度，为WordPress中国用户提供加速
-  Author: Lomu
-  Author URI: http://lomu.me/
-  Version: 1.0.0
+/*!
+Plugin Name: WP Acceleration for China
+Plugin URI: http://lomu.me/post/wp-acceleration-for-china
+Description: 替换Google CDN文件、Gravatar头像链接，加快WordPress打开速度，为WordPress中国用户提供加速
+Author: Lomu
+Author URI: http://lomu.me/
+Version: 1.0.0
 */
 
 // 匹配出css、js、图片地址
-function izt_replace_url($str){
-    $regexp = "/<(link|script|img)([^<>]+)>/i";
-    $str = preg_replace_callback( $regexp, "izt_replace_callback", $str );
+function izt_replace_url($str) {
+    $regexp = '/<(link|script|img)([^<>]+)>/i';
+    $str = preg_replace_callback( $regexp, 'izt_replace_callback', $str );
     return $str;
 }
 
@@ -40,13 +40,14 @@ function izt_replace_callback($matches) {
 }
 
 function izt_replace_start() {
-   //开启缓冲
-  ob_start("izt_replace_url");
+   // 开启缓冲
+  ob_start('izt_replace_url');
 }
 
 function izt_replace_end() {
   // 关闭缓冲
-  ob_end_flush();
+  // ob_end_flush();
+  wp_ob_end_flush_all();
 }
 
 /**
@@ -55,6 +56,4 @@ function izt_replace_end() {
  * 参考链接：http://codex.wordpress.org/Plugin_API/Action_Reference
  */
 add_action('wp_loaded', 'izt_replace_start');
-add_action('shutdown', 'izt_replace_end');
-
-?>
+// add_action('shutdown', 'izt_replace_end');

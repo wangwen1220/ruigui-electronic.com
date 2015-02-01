@@ -36,7 +36,7 @@ class Replace_Google_Fonts
      */
     public function ohMyFont($text)
     {
-        return str_replace('//fonts.useso.com/', '//fonts.useso.com/', $text);
+        return str_replace('//fonts.googleapis.com/', '//fonts.useso.com/', $text);
     }
 }
 
