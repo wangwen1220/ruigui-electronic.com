@@ -67,12 +67,74 @@ if ( ! function_exists( 'thinkup_themesetup' ) ) {
 add_action( 'after_setup_theme', 'thinkup_themesetup' );
 
 
+/* 优化 wp_head
+----------------------------------------------------------------------------- */
+// remove_action('wp_head', 'wp_enqueue_scripts', 1);
+// remove_action('wp_head', 'feed_links', 2);
+// remove_action('wp_head', 'feed_links_extra', 3);
+// remove_action('wp_head', 'rsd_link');
+// remove_action('wp_head', 'wlwmanifest_link');
+// remove_action('wp_head', 'index_rel_link');
+// remove_action('wp_head', 'parent_post_rel_link', 10, 0);
+// remove_action('wp_head', 'start_post_rel_link', 10, 0);
+// remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
+// remove_action('wp_head', 'locale_stylesheet');
+// remove_action('publish_future_post', 'check_and_publish_future_post', 10, 1);
+// remove_action('wp_head', 'noindex', 1);
+// remove_action('wp_head', 'wp_print_styles', 8);
+// remove_action('wp_head', 'wp_print_head_scripts', 9);
+remove_action('wp_head', 'wp_generator');
+// remove_action('wp_head', 'rel_canonical');
+// remove_action('wp_footer', 'wp_print_footer_scripts');
+// remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
+// remove_action('template_redirect', 'wp_shortlink_header', 11, 0);
+// add_action('widgets_init', 'my_remove_recent_comments_style');
+
+// WordPress 技巧：移除后台核心，插件和主题的更新提示
+// add_filter('pre_site_transient_update_core', '__return_null');
+
+// remove_action ('load-update-core.php', 'wp_update_plugins');
+// add_filter('pre_site_transient_update_plugins', '__return_null');
+
+// remove_action ('load-update-core.php', 'wp_update_themes');
+// add_filter('pre_site_transient_update_themes', '__return_null');
+
+// add_filter('auto_update_core', '__return_false'); //关闭核心更新
+
+// 隐藏 WP 图标
+add_action('admin_head', 'modify_admin_head');
+if (is_user_logged_in()) add_action('wp_head', 'modify_admin_head');
+function modify_admin_head() {
+	echo '
+		<style>
+			/* 定制导航菜单 */
+			#wp-admin-bar-wp-logo,
+			#wp-admin-bar-comments {
+				display: none !important;
+			}
+
+			/* 修复媒体库 */
+			.attachments-browser > .wp-filter {
+				position: relative;
+			}
+		</style>
+		<script>
+			jQuery(function($) {
+				var $siteName = $("#wp-admin-bar-site-name");
+				var $body = $("body");
+				var txt = $body.hasClass("wp-admin") ? "预览网站" : "管理后台";
+				$siteName.children("a").text(txt)
+					.next("div").has("#wp-admin-bar-view-site").remove();
+			});
+		</script>
+	';
+}
+
 /* ----------------------------------------------------------------------------------
 	Register Front-End Styles And Scripts
 ---------------------------------------------------------------------------------- */
 
 function thinkup_frontscripts() {
-
 	/* Add jQuery library. */
 	wp_enqueue_script('jquery');
 

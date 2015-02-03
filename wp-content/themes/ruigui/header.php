@@ -20,7 +20,7 @@
 	<![endif]-->
 
 	<?php wp_head(); ?>
-	<script src="<?php bloginfo('template_url'); ?>/lib/scripts/cssrefresh.js"></script>
+	<!--<script src="<?php bloginfo('template_url'); ?>/lib/scripts/cssrefresh.js"></script>-->
 </head>
 
 <body <?php body_class(); ?><?php thinkup_bodystyle(); ?>>
@@ -86,3 +86,5 @@
 		<?php /* Custom Intro */ thinkup_custom_intro(); ?>
 
 		<div id="main-core">
+		<?php the_post('hello-world'); ?>
+		<?php the_content(); ?>
