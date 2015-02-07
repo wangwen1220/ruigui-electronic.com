@@ -75,6 +75,17 @@
 	</header>
 	<!-- header -->
 
+	<!-- showcase -->
+	<?php if (is_home()) : ?>
+	<div class="showcase">
+	<?php
+		// $showcase = get_post(86);
+		echo get_post(86) -> post_content;
+		?>
+	</div>
+	<?php endif; ?>
+	<!-- /showcase -->
+
 	<?php /*  Call To Action - Intro */ thinkup_input_ctaintro(); ?>
 	<?php /*  Pre-Designed HomePage Content */ thinkup_input_homepagesection(); ?>
 	<?php /* Custom Slider */ thinkup_input_sliderpage(); ?>
