@@ -7,6 +7,5 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.php [L]
 </IfModule>
-Redirect 301 /readme.html /
-Redirect 301 /license.txt /
+
 # END WordPress

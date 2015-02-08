@@ -5,7 +5,7 @@
  */
 
 /* ----------------------------------------------------------------------------------
-	FORMAT FOOTER LAYOUT
+  FORMAT FOOTER LAYOUT
 ---------------------------------------------------------------------------------- */
 jQuery(document).ready(function(){
 
@@ -81,194 +81,233 @@ jQuery('#footer-core.option18 #footer-col5.widget-area').addClass("one_fourth");
 
 
 /* ----------------------------------------------------------------------------------
-	FORMAT MAIN HEADER MENU
+  FORMAT MAIN HEADER MENU
 ---------------------------------------------------------------------------------- */
 function mainmenu(){
 
-	/* Add menu-hover class */
-	jQuery("header .header-links ul.menu > li").hover(function(){
-		jQuery(this).find('ul.sub-menu:first').css({visibility: "visible",display: "none"}).parent().addClass('menu-hover');
-	},function(){
-		jQuery(this).find('ul.sub-menu:first').css({visibility: "hidden",display: "none"}).parent().removeClass('menu-hover');
-	});
+  /* Add menu-hover class */
+  jQuery("header .header-links ul.menu > li").hover(function(){
+    jQuery(this).find('ul.sub-menu:first').css({visibility: "visible",display: "none"}).parent().addClass('menu-hover');
+  },function(){
+    jQuery(this).find('ul.sub-menu:first').css({visibility: "hidden",display: "none"}).parent().removeClass('menu-hover');
+  });
 
-	/* Add menu-parent class */
-	jQuery("header .header-links ul.menu > li").each(function(){
-		jQuery(this).find('ul.sub-menu').css({visibility: "visible",display: "none"}).parent().addClass('menu-parent');
-	});
+  /* Add menu-parent class */
+  jQuery("header .header-links ul.menu > li").each(function(){
+    jQuery(this).find('ul.sub-menu').css({visibility: "visible",display: "none"}).parent().addClass('menu-parent');
+  });
 
-	/* Add smooth dropdown effect */
-	jQuery("header .header-links li").hover(function(){
-		parentWidth = jQuery(this).width();
-		jQuery(this).find('ul:first').css({visibility: "visible",display: "none","min-width": parentWidth}).slideToggle(400);
-	},function(){
-		jQuery(this).find('ul:first').css({visibility: "hidden"});
-	});
+  /* Add smooth dropdown effect */
+  jQuery("header .header-links li").hover(function(){
+    parentWidth = jQuery(this).width();
+    jQuery(this).find('ul:first').css({visibility: "visible",display: "none","min-width": parentWidth}).slideToggle(400);
+  },function(){
+    jQuery(this).find('ul:first').css({visibility: "hidden"});
+  });
 
-	/* Add <span> to links in pre-header and header sub menus */
-	jQuery('#pre-header .sub-menu a, #header .sub-menu a').each(function() {
-		jQuery(this).wrapInner("<span></span>");
-	});
+  /* Add <span> to links in pre-header and header sub menus */
+  jQuery('#pre-header .sub-menu a, #header .sub-menu a').each(function() {
+    jQuery(this).wrapInner("<span></span>");
+  });
 }
 jQuery(document).ready(function(){
-	mainmenu();
+  mainmenu();
 });
 
 /* ----------------------------------------------------------------------------------
-	FLUID MEDIA SIZES (Modified from http://bavotasan.com/2012/better-way-to-resize-video-using-jquery)
+  FLUID MEDIA SIZES (Modified from http://bavotasan.com/2012/better-way-to-resize-video-using-jquery)
 ---------------------------------------------------------------------------------- */
 
 /* Videos */
 jQuery(document).ready(function() {
 
-	/* Supported Platforms */
-	var all_videos = jQuery( 'iframe[src*="//player.vimeo.com"], iframe[src*="//www.youtube.com"], iframe[src*="//blip.tv"], iframe[src*="//www.slideshare.net"], iframe[src*="//www.scribd.com"], iframe[src*="//revision3.com"], iframe[src*="//www.hulu.com"], iframe[src*="//www.funnyordie.com"], iframe[src*="//www.dailymotion.com"], embed[src*="//v.wordpress.com"], object, embed' );
+  /* Supported Platforms */
+  var all_videos = jQuery( 'iframe[src*="//player.vimeo.com"], iframe[src*="//www.youtube.com"], iframe[src*="//blip.tv"], iframe[src*="//www.slideshare.net"], iframe[src*="//www.scribd.com"], iframe[src*="//revision3.com"], iframe[src*="//www.hulu.com"], iframe[src*="//www.funnyordie.com"], iframe[src*="//www.dailymotion.com"], embed[src*="//v.wordpress.com"], object, embed' );
 
-	all_videos.each(function() {
-		var el = jQuery(this);
-		el
-			.attr( 'data-aspectRatio', 360 / 640 )
-			.attr( 'data-oldWidth', el.width() );
-	} );
+  all_videos.each(function() {
+    var el = jQuery(this);
+    el
+      .attr( 'data-aspectRatio', 360 / 640 )
+      .attr( 'data-oldWidth', el.width() );
+  } );
 
-	jQuery(document).ready(function() {
-		all_videos.each( function() {
-		var el = jQuery(this),
-			newWidth = el.parents().width(),
-			oldWidth = el.attr( 'data-oldWidth' );
+  jQuery(document).ready(function() {
+    all_videos.each( function() {
+    var el = jQuery(this),
+      newWidth = el.parents().width(),
+      oldWidth = el.attr( 'data-oldWidth' );
 
-			el
-				.removeAttr( 'height' )
-				.removeAttr( 'width' )
-				.width( newWidth )
-				.height( newWidth * el.attr( 'data-aspectRatio' ) );
-		});
-	}).resize();
+      el
+        .removeAttr( 'height' )
+        .removeAttr( 'width' )
+        .width( newWidth )
+        .height( newWidth * el.attr( 'data-aspectRatio' ) );
+    });
+  }).resize();
 
-	jQuery(window)
-		.resize( function() {
-			all_videos.each( function() {
-			var el = jQuery(this),
-				newWidth = el.parents().width(),
-				oldWidth = el.attr( 'data-oldWidth' );
+  jQuery(window)
+    .resize( function() {
+      all_videos.each( function() {
+      var el = jQuery(this),
+        newWidth = el.parents().width(),
+        oldWidth = el.attr( 'data-oldWidth' );
 
-				el
-					.removeAttr( 'height' )
-					.removeAttr( 'width' )
-					.width( newWidth )
-		    		.height( newWidth * el.attr( 'data-aspectRatio' ) );
-			});
-		}).resize();
+        el
+          .removeAttr( 'height' )
+          .removeAttr( 'width' )
+          .width( newWidth )
+            .height( newWidth * el.attr( 'data-aspectRatio' ) );
+      });
+    }).resize();
 });
 
 /* SoundCloud */
 jQuery(document).ready(function() {
 
-	/* Supported Platforms */
-	var all_sounds = jQuery( 'iframe[src^="http://w.soundcloud.com"]' );
+  /* Supported Platforms */
+  var all_sounds = jQuery( 'iframe[src^="http://w.soundcloud.com"]' );
 
-	all_sounds.each(function() {
-		var el = jQuery(this);
-		el
-			.attr( 'data-aspectRatio', el.attr( 'height' ) / el.attr( 'width' )  )
-			.attr( 'data-oldWidth', el.width() );
-	});
+  all_sounds.each(function() {
+    var el = jQuery(this);
+    el
+      .attr( 'data-aspectRatio', el.attr( 'height' ) / el.attr( 'width' )  )
+      .attr( 'data-oldWidth', el.width() );
+  });
 
-	jQuery(document).ready(function() {
-		all_sounds.each( function() {
-		var el = jQuery(this),
-			newWidth = el.parents().width(),
-			oldWidth = el.attr( 'data-oldWidth' );
+  jQuery(document).ready(function() {
+    all_sounds.each( function() {
+    var el = jQuery(this),
+      newWidth = el.parents().width(),
+      oldWidth = el.attr( 'data-oldWidth' );
 
-			el
-				.removeAttr( 'width' )
-				.width( newWidth )
-		});
-	}).resize();
+      el
+        .removeAttr( 'width' )
+        .width( newWidth )
+    });
+  }).resize();
 
-	jQuery(window)
-		.resize( function() {
-			all_sounds.each( function() {
-			var el = jQuery(this),
-				newWidth = el.parents().width(),
-				oldWidth = el.attr( 'data-oldWidth' );
+  jQuery(window)
+    .resize( function() {
+      all_sounds.each( function() {
+      var el = jQuery(this),
+        newWidth = el.parents().width(),
+        oldWidth = el.attr( 'data-oldWidth' );
 
-				el
-					.removeAttr( 'width' )
-					.width( newWidth )
-			});
-		}).resize();
+        el
+          .removeAttr( 'width' )
+          .width( newWidth )
+      });
+    }).resize();
 });
 
 
 /* ----------------------------------------------------------------------------------
-	ADD PRETTYPHOTO TO PORTFOLIO PAGE
+  ADD PRETTYPHOTO TO PORTFOLIO PAGE
 ---------------------------------------------------------------------------------- */
 
 jQuery(document).ready(function() {
-	jQuery('#container.portfolio-wrapper a').has('img.hover-zoom').addClass('prettyPhoto');
-	jQuery('#container.portfolio-wrapper a').has('img.hover-zoom').attr('rel','portfolio[gallery]');
-	jQuery('a.prettyPhoto').has('img').attr('rel','portfolio[gallery]');
-	jQuery('a.prettyPhoto').prettyPhoto();
+  jQuery('#container.portfolio-wrapper a').has('img.hover-zoom').addClass('prettyPhoto');
+  jQuery('#container.portfolio-wrapper a').has('img.hover-zoom').attr('rel','portfolio[gallery]');
+  jQuery('a.prettyPhoto').has('img').attr('rel','portfolio[gallery]');
+  jQuery('a.prettyPhoto').prettyPhoto();
 });
 
 
 
 /* ----------------------------------------------------------------------------------
-	ADD PRETTYPHOTO TO POST IMAGE PAGE
+  ADD PRETTYPHOTO TO POST IMAGE PAGE
 ---------------------------------------------------------------------------------- */
 
 jQuery(document).ready(function() {
-	jQuery('body.attachment .entry-attachment .attachment a').has('img').addClass('prettyPhoto');
-	jQuery('a.prettyPhoto').prettyPhoto();
+  jQuery('body.attachment .entry-attachment .attachment a').has('img').addClass('prettyPhoto');
+  jQuery('a.prettyPhoto').prettyPhoto();
 });
 
 
 /* ----------------------------------------------------------------------------------
-	ADD STRUCTURE TO COMMENT FORM (BLOG PAGE)
+  ADD STRUCTURE TO COMMENT FORM (BLOG PAGE)
 ---------------------------------------------------------------------------------- */
 
 jQuery(document).ready(function() {
-	jQuery('.comment-form-author').addClass('one_third');
-	jQuery('.comment-form-email').addClass('one_third');
-	jQuery('.comment-form-url').addClass('one_third last');
+  jQuery('.comment-form-author').addClass('one_third');
+  jQuery('.comment-form-email').addClass('one_third');
+  jQuery('.comment-form-url').addClass('one_third last');
 });
 
 
 /* ----------------------------------------------------------------------------------
-	WIDGETS
+  WIDGETS
 ---------------------------------------------------------------------------------- */
 
 /* Categories */
 jQuery(document).ready(function(){
-	jQuery('.widget.thinkup_widget_categories .cat-item a').prepend('<i class="icon-caret-right icon-large"></i>');
+  jQuery('.widget.thinkup_widget_categories .cat-item a').prepend('<i class="icon-caret-right icon-large"></i>');
 });
 
 
 /* ----------------------------------------------------------------------------------
-	ADD _BLANK TO OUTGOING LINKS
+  ADD _BLANK TO OUTGOING LINKS
 ---------------------------------------------------------------------------------- */
 
 jQuery(document).ready(function(){
-	jQuery('.thinkup_widget_flickr a[href^="http://"], .thinkup_widget_flickr a[href^="https://"]').attr('target','_blank');
-	jQuery('.thinkup_widget_socialshare a[href^="http://"], .thinkup_widget_socialshare a[href^="https://"]').attr('target','_blank');
-	jQuery('.thinkup_widget_socialprofiles a[href^="http://"], .thinkup_widget_socialprofiles a[href^="https://"]').attr('target','_blank');
-	jQuery('#pre-header-social a[href^="http://"], #pre-header-social a[href^="https://"]').attr('target','_blank');
-	jQuery('#shareicons a[href^="http://"], #shareicons a[href^="https://"]').attr('target','_blank');
+  jQuery('.thinkup_widget_flickr a[href^="http://"], .thinkup_widget_flickr a[href^="https://"]').attr('target','_blank');
+  jQuery('.thinkup_widget_socialshare a[href^="http://"], .thinkup_widget_socialshare a[href^="https://"]').attr('target','_blank');
+  jQuery('.thinkup_widget_socialprofiles a[href^="http://"], .thinkup_widget_socialprofiles a[href^="https://"]').attr('target','_blank');
+  jQuery('#pre-header-social a[href^="http://"], #pre-header-social a[href^="https://"]').attr('target','_blank');
+  jQuery('#shareicons a[href^="http://"], #shareicons a[href^="https://"]').attr('target','_blank');
 });
 
 
 /* ----------------------------------------------------------------------------------
-	SHORTCODES - PREMIUM FEATURE
+  SHORTCODES - PREMIUM FEATURE
 ---------------------------------------------------------------------------------- */
 
 jQuery(document).ready(function() {
 
-	/* Tooltip - Activate Bootstrap */
-	jQuery('[data-tip]').each( function() {jQuery(this).tooltip({ placement: jQuery(this).data('tip') }); });
+  /* Tooltip - Activate Bootstrap */
+  jQuery('[data-tip]').each( function() {jQuery(this).tooltip({ placement: jQuery(this).data('tip') }); });
 });
 
 
 /* ----------------------------------------------------------------------------------
-	SHORTCODES - WAYPOINTS ANIMATION - PREMIUM FEATURE
+  SHORTCODES - WAYPOINTS ANIMATION - PREMIUM FEATURE
 ---------------------------------------------------------------------------------- */
+
+
+// 页脚固底
+jQuery(function($) {
+  var $footer = $('#sub-footer').parent('footer');
+  var styleStr = $footer.attr('style') || '';
+  var $holder = $('<div/>');
+
+  $(window).on('resize', function() {
+    var footerHeight = $footer.outerHeight();
+    var winHeight = $(window).height();
+    // var docHeight = $(document).height();
+    var bodyHeight = $(document.documentElement).height();
+    var footerHeight = $footer.outerHeight();
+
+    // DEBUGGING STUFF
+    // console.log(styleStr);
+    // console.log('Body height: ', $(document.body).height());
+    // console.log('DocumentElement height: ', $(document.documentElement).height());
+    // console.log('Document height: ', docHeight);
+    // console.log('Window height: ', winHeight);
+    // console.log('Footer height: ', footerHeight);
+    // console.log('------------------------------')
+
+    // 如果页面内容高度小于屏幕高度，页脚将绝对定位到屏幕底部
+    if (bodyHeight < winHeight) {
+      $holder.insertBefore($footer).height(footerHeight);
+      $footer.css({
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        bottom: 0
+      });//.stop().animate({bottom: 0});
+    } else {
+      $holder.remove();
+      $footer.attr('style', styleStr);
+    }
+  });
+});

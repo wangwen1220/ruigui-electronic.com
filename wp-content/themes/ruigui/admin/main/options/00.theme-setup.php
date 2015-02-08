@@ -11,12 +11,12 @@
 ---------------------------------------------------------------------------------- */
 
 /* Used at top if header.php */
-function thinkup_hook_header() { 
+function thinkup_hook_header() {
 	do_action('thinkup_hook_header');
 }
 
 /* Used at top if header.php within the body tag */
-function thinkup_bodystyle() { 
+function thinkup_bodystyle() {
 	do_action('thinkup_bodystyle');
 }
 
@@ -24,7 +24,7 @@ function thinkup_bodystyle() {
 function thinkup_check_premium($classes){
 
 	// Add class to admin area to make page builder parallax work (if template-parallax.php is present)
-	if ( '' != locate_template( 'template-parallax.php' ) ) {	
+	if ( '' != locate_template( 'template-parallax.php' ) ) {
 		$classes = 'thinkup_parallax_enabled';
 	}
 	return $classes;
@@ -72,7 +72,7 @@ global $thinkup_general_breadcrumbdelimeter;
 	$arc_year       =   get_the_time('Y');
 	$arc_month      =   get_the_time('F');
 	$arc_day        =   get_the_time('d');
-	$arc_day_full   =   get_the_time('l');  
+	$arc_day_full   =   get_the_time('l');
 
 	/* URL variables */
 	$url_year    =   get_year_link($arc_year);
@@ -83,7 +83,7 @@ global $thinkup_general_breadcrumbdelimeter;
 		echo '<div id="breadcrumbs"><div id="breadcrumbs-core">';
 		global $post, $cat;
 		$homeLink = home_url( '/' );
-		echo '<a href="' . $homeLink . '">' . $main . '</a>' . $delimiter;    
+		echo '<a href="' . $homeLink . '">' . $main . '</a>' . $delimiter;
 
 		/* Display breadcrumbs for single post */
 		if ( is_single() ) {
@@ -116,7 +116,7 @@ global $thinkup_general_breadcrumbdelimeter;
 			echo get_the_title();
 		} elseif ( is_page() && $post->post_parent ) {
 			$post_array = get_post_ancestors( $post );
-			krsort( $post_array ); 
+			krsort( $post_array );
 			foreach( $post_array as $key=>$postid ){
 				$post_ids = get_post( $postid );
 				$title = $post_ids->post_title;
@@ -140,8 +140,8 @@ global $thinkup_general_breadcrumbdelimeter;
 function thinkup_input_pagination( $pages = "", $range = 2 ) {
 global $paged;
 global $wp_query;
-		
-	$showitems = ($range * 2)+1;  
+
+	$showitems = ($range * 2)+1;
 
 	if(empty($paged)) $paged = 1;
 
@@ -154,10 +154,10 @@ global $wp_query;
 
 	if(1 != $pages) {
 		echo '<ul class="pag">';
-		
-			if($paged > 2 && $paged > $range+1 && $showitems < $pages) 
+
+			if($paged > 2 && $paged > $range+1 && $showitems < $pages)
 				echo '<li class="pag-first"><a href="' . get_pagenum_link(1). '">&laquo;</a></li>';
-			if($paged > 1 && $showitems < $pages) 
+			if($paged > 1 && $showitems < $pages)
 				echo '<li class="pag-previous"><a href="' . get_pagenum_link($paged - 1). '">&lsaquo; ' . __( 'Prev', 'lan-thinkupthemes' ) . '</a></li>';
 
 			for ($i=1; $i <= $pages; $i++) {
@@ -166,9 +166,9 @@ global $wp_query;
 				}
 			}
 
-			if ($paged < $pages && $showitems < $pages) 
+			if ($paged < $pages && $showitems < $pages)
 				echo '<li class="pag-next"><a href="' . get_pagenum_link($paged + 1) . '">' . __( 'Next', 'lan-thinkupthemes' ) . ' &rsaquo;</i></a></li>';
-			if ($paged < $pages-1 &&  $paged+$range-1 < $pages && $showitems < $pages) 
+			if ($paged < $pages-1 &&  $paged+$range-1 < $pages && $showitems < $pages)
 				echo '<li class="pag-last" ><a href="' . get_pagenum_link($pages) . '">&raquo;</a></li>';
 
 		echo '</ul>';
@@ -191,11 +191,11 @@ remove_action( 'wp_head', 'wp_generator');
 	REMOVE NON VALID REL CATEGORY TAGS
 ---------------------------------------------------------------------------------- */
 
-function thinkup_add_nofollow_cat( $text ) { 
+function thinkup_add_nofollow_cat( $text ) {
 	$text = str_replace( 'rel="category"', "", $text );
-	return $text; 
+	return $text;
 };
-add_filter( 'the_category', 'thinkup_add_nofollow_cat' );  
+add_filter( 'the_category', 'thinkup_add_nofollow_cat' );
 
 
 /* ----------------------------------------------------------------------------------
@@ -206,52 +206,52 @@ if ( ! function_exists( 'thinkup_input_addimagesizes' ) ) {
 	function thinkup_input_addimagesizes() {
 
 		/* 1 Column Layout */
-		add_image_size( 'column1-1/1', 960, 960, true );
-		add_image_size( 'column1-1/2', 960, 480, true );
-		add_image_size( 'column1-1/3', 960, 320, true );
-		add_image_size( 'column1-2/3', 960, 640, true );
-		add_image_size( 'column1-1/4', 960, 240, true );
-		add_image_size( 'column1-3/4', 960, 720, true );
-		add_image_size( 'column1-1/5', 960, 192, true );
-		add_image_size( 'column1-2/5', 960, 384, true );
-		add_image_size( 'column1-3/5', 960, 576, true );
-		add_image_size( 'column1-4/5', 960, 768, true );
+		// add_image_size( 'column1-1/1', 960, 960, true );
+		// add_image_size( 'column1-1/2', 960, 480, true );
+		// add_image_size( 'column1-1/3', 960, 320, true );
+		// add_image_size( 'column1-2/3', 960, 640, true );
+		// add_image_size( 'column1-1/4', 960, 240, true );
+		// add_image_size( 'column1-3/4', 960, 720, true );
+		// add_image_size( 'column1-1/5', 960, 192, true );
+		// add_image_size( 'column1-2/5', 960, 384, true );
+		// add_image_size( 'column1-3/5', 960, 576, true );
+		// add_image_size( 'column1-4/5', 960, 768, true );
 
 		/* 2 Column Layout */
-		add_image_size( 'column2-1/1', 480, 480, true );
-		add_image_size( 'column2-1/2', 480, 240, true );
-		add_image_size( 'column2-1/3', 480, 160, true );
-		add_image_size( 'column2-2/3', 480, 320, true );
-		add_image_size( 'column2-1/4', 480, 120, true );
-		add_image_size( 'column2-3/4', 480, 360, true );
-		add_image_size( 'column2-1/5', 480, 96, true );
-		add_image_size( 'column2-2/5', 480, 192, true );
-		add_image_size( 'column2-3/5', 480, 288, true );
-		add_image_size( 'column2-4/5', 480, 384, true );
+		// add_image_size( 'column2-1/1', 480, 480, true );
+		// add_image_size( 'column2-1/2', 480, 240, true );
+		// add_image_size( 'column2-1/3', 480, 160, true );
+		// add_image_size( 'column2-2/3', 480, 320, true );
+		// add_image_size( 'column2-1/4', 480, 120, true );
+		// add_image_size( 'column2-3/4', 480, 360, true );
+		// add_image_size( 'column2-1/5', 480, 96, true );
+		// add_image_size( 'column2-2/5', 480, 192, true );
+		// add_image_size( 'column2-3/5', 480, 288, true );
+		// add_image_size( 'column2-4/5', 480, 384, true );
 
 		/* 3 Column Layout */
-		add_image_size( 'column3-1/1', 320, 320, true );
-		add_image_size( 'column3-1/2', 320, 160, true );
-		add_image_size( 'column3-1/3', 320, 107, true );
-		add_image_size( 'column3-2/3', 320, 213, true );
-		add_image_size( 'column3-1/4', 320, 80, true );
-		add_image_size( 'column3-3/4', 320, 240, true );
-		add_image_size( 'column3-1/5', 320, 64, true );
-		add_image_size( 'column3-2/5', 320, 128, true );
-		add_image_size( 'column3-3/5', 320, 192, true );
-		add_image_size( 'column3-4/5', 320, 256, true );
+		// add_image_size( 'column3-1/1', 320, 320, true );
+		// add_image_size( 'column3-1/2', 320, 160, true );
+		// add_image_size( 'column3-1/3', 320, 107, true );
+		// add_image_size( 'column3-2/3', 320, 213, true );
+		// add_image_size( 'column3-1/4', 320, 80, true );
+		// add_image_size( 'column3-3/4', 320, 240, true );
+		// add_image_size( 'column3-1/5', 320, 64, true );
+		// add_image_size( 'column3-2/5', 320, 128, true );
+		// add_image_size( 'column3-3/5', 320, 192, true );
+		// add_image_size( 'column3-4/5', 320, 256, true );
 
 		/* 4 Column Layout */
-		add_image_size( 'column4-1/1', 240, 240, true );
-		add_image_size( 'column4-1/2', 240, 120, true );
-		add_image_size( 'column4-1/3', 240, 80, true );
-		add_image_size( 'column4-2/3', 240, 160, true );
-		add_image_size( 'column4-1/4', 240, 60, true );
-		add_image_size( 'column4-3/4', 240, 180, true );
-		add_image_size( 'column4-1/5', 240, 48, true );
-		add_image_size( 'column4-2/5', 240, 96, true );
-		add_image_size( 'column4-3/5', 240, 144, true );
-		add_image_size( 'column4-4/5', 240, 192, true );
+		// add_image_size( 'column4-1/1', 240, 240, true );
+		// add_image_size( 'column4-1/2', 240, 120, true );
+		// add_image_size( 'column4-1/3', 240, 80, true );
+		// add_image_size( 'column4-2/3', 240, 160, true );
+		// add_image_size( 'column4-1/4', 240, 60, true );
+		// add_image_size( 'column4-3/4', 240, 180, true );
+		// add_image_size( 'column4-1/5', 240, 48, true );
+		// add_image_size( 'column4-2/5', 240, 96, true );
+		// add_image_size( 'column4-3/5', 240, 144, true );
+		// add_image_size( 'column4-4/5', 240, 192, true );
 	}
 	add_action( 'init', 'thinkup_input_addimagesizes' );
 }
@@ -358,28 +358,28 @@ function thinkup_check_ishome() {
 // Modifies WordPress's built-in comments_popup_link() function to return a string instead of echo comment results
 function thinkup_get_comments_popup_link( $zero = false, $one = false, $more = false, $css_class = '', $none = false ) {
     global $wpcommentspopupfile, $wpcommentsjavascript;
- 
+
     $id = get_the_ID();
- 
+
     if ( false === $zero ) $zero = __( 'No Comments','lan-thinkupthemes' );
     if ( false === $one ) $one = __( '1 Comment','lan-thinkupthemes' );
     if ( false === $more ) $more = __( '% Comments','lan-thinkupthemes' );
     if ( false === $none ) $none = __( 'Comments Off','lan-thinkupthemes' );
- 
+
     $number = get_comments_number( $id );
- 
+
     $str = '';
- 
+
     if ( 0 == $number && !comments_open() && !pings_open() ) {
         $str = '<span' . ((!empty($css_class)) ? ' class="' . esc_attr( $css_class ) . '"' : '') . '>' . $none . '</span>';
         return $str;
     }
- 
+
     if ( post_password_required() ) {
         $str = __('Enter your password to view comments.','lan-thinkupthemes');
         return $str;
     }
- 
+
     $str = '<a href="';
     if ( $wpcommentsjavascript ) {
         if ( empty( $wpcommentspopupfile ) )
@@ -395,35 +395,35 @@ function thinkup_get_comments_popup_link( $zero = false, $one = false, $more = f
             $str .= get_comments_link();
         $str .= '"';
     }
- 
+
     if ( !empty( $css_class ) ) {
         $str .= ' class="'.$css_class.'" ';
     }
     $title = the_title_attribute( array('echo' => 0 ) );
- 
+
     $str .= apply_filters( 'comments_popup_link_attributes', '' );
- 
+
     $str .= ' title="' . esc_attr( sprintf( __('Comment on %s','lan-thinkupthemes'), $title ) ) . '">';
     $str .= thinkup_get_comments_number_str( $zero, $one, $more );
     $str .= '</a>';
-     
+
     return $str;
 }
- 
+
 // Modifies WordPress's built-in comments_number() function to return string instead of echo
 function thinkup_get_comments_number_str( $zero = false, $one = false, $more = false, $deprecated = '' ) {
     if ( !empty( $deprecated ) )
         _deprecated_argument( __FUNCTION__, '1.3' );
- 
+
     $number = get_comments_number();
- 
+
     if ( $number > 1 )
         $output = str_replace('%', number_format_i18n($number), ( false === $more ) ? __( '% Comments', 'lan-thinkupthemes' ) : $more);
     elseif ( $number == 0 )
         $output = ( false === $zero ) ? __( 'No Comments', 'lan-thinkupthemes' ) : $zero;
     else // must be one
         $output = ( false === $one ) ? __( '1 Comment', 'lan-thinkupthemes' ) : $one;
- 
+
     return apply_filters('comments_number', $output, $number);
 }
 
@@ -448,19 +448,19 @@ add_filter( 'wp_page_menu', 'thinkup_add_menuclass' );
 
 // Credit to: http://www.poseidonwebstudios.com/web-development/wordpress-is_blog-function/
 function thinkup_is_blog() {
- 
+
     global $post;
- 
+
     //Post type must be 'post'.
     $post_type = get_post_type($post);
- 
+
     //Check all blog-related conditional tags, as well as the current post type,
     //to determine if we're viewing a blog page.
     return (
         ( is_home() || is_archive() || is_single() )
         && ($post_type == 'post')
     ) ? true : false ;
- 
+
 }
 
 
@@ -527,22 +527,22 @@ function thinkup_googlefonts_url() {
 
     // Translators: Translate thsi to 'off' if there are characters in your language that are not supported by Open Sans
     $open_sans = _x( 'on', 'Open Sans font: on or off', 'lan-thinkupthemes' );
- 
+
     if ( 'off' !== $open_sans ) {
         $font_families = array();
-  
+
         if ( 'off' !== $open_sans ) {
             $font_families[] = 'Open Sans:300,400,600,700';
         }
- 
+
         $query_args = array(
             'family' => urlencode( implode( '|', $font_families ) ),
             'subset' => urlencode( 'latin,latin-ext' ),
         );
- 
+
         $fonts_url = add_query_arg( $query_args, '//fonts.googleapis.com/css' );
     }
- 
+
     return $fonts_url;
 }
 

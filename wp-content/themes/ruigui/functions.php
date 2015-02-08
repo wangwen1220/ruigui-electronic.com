@@ -50,6 +50,7 @@ if ( ! function_exists( 'thinkup_themesetup' ) ) {
     /* Add default theme functions. */
     add_theme_support( 'automatic-feed-links' );
     add_theme_support( 'post-thumbnails' );
+    // set_post_thumbnail_size(140, 98, true); // 设置缩略图的尺寸
     add_theme_support( 'custom-background' );
 
     // Add support for custom header
@@ -347,3 +348,13 @@ function get_posts_by_tag($tag) {
   $output .= "</ul></li>";
   echo $output;
 }
+
+// 禁用页面的评论功能
+function disable_page_comments( $posts ) {
+  if ( is_page()) {
+    $posts[0]->comment_status = 'disabled';
+    $posts[0]->ping_status = 'disabled';
+  }
+  return $posts;
+}
+add_filter( 'the_posts', 'disable_page_comments' );
